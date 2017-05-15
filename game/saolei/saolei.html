@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            user-select: none;
+        }
+        body{
+            background-image: url(3.jpg);
+            background-size: cover;
+        }
+        .sence{
+            width: 500px;
+            height: 500px;
+            border-left: 1px solid#ccc;
+            border-top: 1px solid#ccc;
+            background: #fff;
+        }
+        .block{
+            width: 49px;
+            height: 49px;
+            background-image: url(2.jpg);
+            background-size: cover;
+            background-position: center;
+            float: left;
+            border-right: 1px solid#ccc;
+            border-bottom: 1px solid#ccc;
+        }
+        .control{
+            width: 150px;
+            height: 500px;
+            position: fixed;
+            top: 0;
+            left:550px;
+            background: #616161;
+        }
+        .show{
+            background-image: url(1.jpg);
+            background-size: cover;
+            background-position: center;
+        }
+        .num{
+            background: #fff;
+            text-align: center;
+            line-height: 50px;
+            font-size: 25px;
+        }
+        .flag{
+            background-image: url(1.png);
+            background-size: cover;
+            background-position: center;
+        }
+        .mask,.mask1,.mask2,.mask3,.mask4{
+            width: 500px;
+            height: 500px;
+            background: rgba(0,0,0,.8);
+            position: absolute;
+            z-index: 10;
+            left: 0;
+            top: 0;
+        }
+        .mask4 li{
+            background: #fff;
+            width: 100px;
+            height:50px;
+            border-radius: 10px;
+            letter-spacing: 5px;
+            text-align: center;
+            line-height: 50px;
+            margin: 80px auto;
+        }
+        b{
+            display: block;
+            text-align: center;
+            line-height: 500px;
+            font-size: 50px;
+            color: #fff;
+        }
+        .start{
+            width: 200px;
+            height: 100px;
+            background: #fff;
+            border-radius: 20px;
+            line-height: 100px;
+            text-align: center;
+            cursor: pointer;
+            margin: 200px auto;
+            font-size: 30px;
+        }
+        .control time,.control .flagnum,.control .restart,.control .difficut,.control .phb{
+            display: block;
+            width: 100px;
+            height: 50px;
+            border-radius: 10px;
+            background: #fff;
+            line-height: 50px;
+            text-align: center;
+            margin: 40px auto;
+            cursor: pointer;
+        }
+        .control .phb{
+            position: relative;
+        }
+        .control .phb .phblis{
+            width: 200px;
+            height: 155px;
+            position: absolute;
+            left: 0;
+            top: 50px;
+            background: #ccc;
+        }
+        .control .phb .phblis li{
+            width:200px;
+            font-size: 16px;
+            padding-left: 20px;
+            box-sizing: border-box;
+            border-bottom: 2px dashed #fff;
+        }
+        .control span{
+            color: red;
+            font-size: 25px;
+        }
+    </style>
+</head>
+<body>
+<div class="mask">
+    <div class="start">开始游戏</div>
+</div>
+<div class="mask1">
+    <b>恭喜扫雷成功!</b>
+</div>
+<div class="mask2">
+    <b>已踩雷！GAME OVER!</b>
+</div>
+<div class="mask3">
+    <b>你傻啊！</b>
+</div>
+<ul class="mask4">
+    <li class="simple">简单</li>
+    <li class="yiban">一般</li>
+    <li class="kunnan">困难</li>
+</ul>
+<div class="sence"></div>
+<div class="control">
+    <time>用时 <span> 0 </span> S</time>
+    <div class="flagnum">旗子: <span>15</span></div>
+    <div class="restart">重新开始</div>
+    <div class="difficut">难度选择</div>
+    <div class="phb">排行榜
+        <ul class="phblis">
+           
+        </ul>
+    </div>
+</div>
+<script src="jQuery.js"></script>
+<script>
+    //$(document).ready(functon(){})    window.onload(所有加载完 包括图片..)
+    $(function () { //文档结构加载完后
+        var num=10;
+        var t;
+        var s=0;
+        var leiNum=10;
+        var scor=0;
+        var ti=1;
+        var bestscor=localStorage.best?JSON.parse(localStorage.best):[];
+        //造雷函数
+        function createLei() {
+            do{
+                $(".sence").empty(); //每次都清空容器
+                for(var i=0;i<10;i++){
+                    for(var j=0;j<10;j++){
+                        var islei=Math.random()>0.8;
+                        $("<div>")
+                            .addClass(function () {
+                                if(islei){
+                                    return "block lei"
+                                }else {
+                                    return "block"
+                                }
+                            })
+                            .attr("id",i+"-"+j)
+                            .data("pos",{x:i,y:j})
+                            .mousedown(onmousedownEvent)
+                            .appendTo(".sence")
+                    }
+                }
+            }while($(".lei").length!==leiNum) //不够15进循环
+            $(".mask1").hide();
+            $(".mask2").hide();
+            $(".mask3").hide();
+            $(".mask4").hide();
+//            $(".control").hide();
+            $(".phblis").hide();
+        }
+        createLei();
+        //开始游戏
+        $(".start").click(function(){
+            $(".mask").fadeOut(500);
+            t=setInterval(times,1000);
+            createLei();
+//            $(".control").slideDown(500);
+        })
+        //重新开始
+        $(".restart").click(function(){
+            createLei();
+            $("time span").html(0);
+            s=0;
+            num=10;
+            ti=1;
+            clearInterval(t);
+            t=setInterval(times,1000);
+            $(".flagnum").html("旗子:" +num);
+        })
+        //选择关卡
+        $(".difficut").click(function () {
+            $(".mask4").show();
+            $(".mask").hide();
+        })
+        //简单
+        $(".simple").click(function () {
+            $(".mask").show();
+            $(".mask4").hide();
+        })
+        //一般
+        $(".yiban").click(function () {
+            $(".mask").show();
+            $(".mask4").hide();
+            num=15;
+            leiNum=15;
+            createLei();
+            $("time span").html(0);
+            s=0;
+            clearInterval(t);
+            t=setInterval(times,1000);
+            $(".flagnum").html("旗子:" +num);
+        })
+        //困难
+        $(".kunnan").click(function () {
+            $(".mask").show();
+            $(".mask4").hide();
+            num=20;
+            leiNum=20;
+            createLei();
+            $("time span").html(0);
+            s=0;
+            clearInterval(t);
+            t=setInterval(times,1000);
+            $(".flagnum").html("旗子:" +num);
+        })
+        //时间间隔函数
+        function times(){
+            s++;
+            $("time span").html(s);
+        }
+        $(".phb").click(function(){
+            reWrite();
+            $(".phblis").slideToggle();
+        })
+        //左右击事件
+        function onmousedownEvent(e) {
+            if(e.which==1){
+                leftclick.call(this)
+            }else {
+                rightclick.call(this)
+            }
+        }
+        //左击函数
+        function leftclick() {
+            if($(this).hasClass("flag")){
+                return;
+            }
+            if($(this).hasClass("lei")){
+                $(".lei").addClass("show")
+                $(".mask2").show();
+                clearInterval(t);
+                $(".sence div").unbind("mousedown");
+            }else {
+                $(this).addClass("num")
+                var pos=$(this).data("pos");
+                var n=0;
+                for(var i=pos.x-1;i<=pos.x+1;i++){
+                    for(var j=pos.y-1;j<=pos.y+1;j++){
+                        if($("#"+i+"-"+j).hasClass("lei")){
+                            n++;
+                        }
+                    }
+                }
+                $(this).html(n)
+                if(n==0){
+                    for(var i=pos.x-1;i<=pos.x+1;i++){
+                        for(var j=pos.y-1;j<=pos.y+1;j++){
+                            var obj=$("#"+i+"-"+j)
+                            if(obj.length==1&&!obj.hasClass("num")){
+                                leftclick.call(obj[0])
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        //右击函数
+        function rightclick() {
+            if($(this).hasClass("num")){
+                return;
+            }
+            if($(this).hasClass("flag")){
+                $(this).removeClass("flag")
+                num++;
+            }else{
+                // $(this).addClass("flag");
+                num--;
+                if(num<0){
+                    num++;
+                    $(".mask3").show();
+                    clearInterval(t);
+                    $(".sence div").unbind("mousedown");
+                    return;
+                }
+                $(this).addClass("flag")
+                if(num==0) {
+                    if ($(".flag").filter(".lei").length == leiNum) {
+                        clearInterval(t);
+                        $(".mask1").show();
+                        scor=s;
+                        if(bestscor.length<3||bestscor.length==3&&scor<bestscor[2].scors){
+                            var name=prompt("请输入姓名：");
+                            bestscor.push({name,scors:scor});
+                            bestscor.sort(function(a,b){
+                                if(a<b){
+                                    return -1;
+                                }else{
+                                    return 1;
+                                }
+                            })
+                            if(bestscor.length>3){
+                                bestscor.pop();
+                            }
+                            reWrite();
+                        }
+                        localStorage.best=JSON.stringify(bestscor);
+                        alert("你本次用时为："+scor)
+                    }
+                }
+            }
+            $(".flagnum").html("旗子: "+num)
+        }
+        //阻止右击浏览器默认行为
+        $(document).on("contextmenu",function (e) {
+            e.preventDefault();
+        })
+
+         function reWrite(){
+        $(".phblis").html("");
+        if(bestscor){
+            $(bestscor).each(function(i,v){
+                $(".phblis").append("<li>姓名："+ v.name+"  用时："+v.scors+"</li>");
+            })
+        }
+        
+    }
+
+    })
+</script>
+</body>
+</html>

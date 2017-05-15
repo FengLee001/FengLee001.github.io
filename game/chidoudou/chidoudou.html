@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+        canvas{
+            background: #00a8f6;
+        }
+    </style>
+</head>
+<body>
+    <canvas></canvas>
+    <img src="1.png" alt="" class="chihuo" hidden>
+    <img src="2.png" alt="" class="chihuo" hidden>
+    <img src="3.png" alt="" class="chihuo" hidden>
+    <img src="4.png" alt="" class="chihuo" hidden>
+    <img src="5.png" alt="" class="chihuo" hidden>
+    <img src="6.png" alt="" class="chihuo" hidden>
+    <img src="7.png" alt="" class="chihuo" hidden>
+    <img src="8.png" alt="" class="dou" hidden>
+
+
+    <script src="hitPix.js"></script>
+
+    <script>
+        window.onload=function () {
+            //svg
+            let canvas=document.querySelector("canvas");
+            let chihuo=document.querySelectorAll(".chihuo");
+            let dou=document.querySelector(".dou");
+            canvas.width=500;
+            canvas.height=500;
+            let cobj=canvas.getContext("2d");
+
+            class chiPlayer{
+               constructor(canvas,cobj,chihuo){
+                   this.canvas=canvas;
+                   this.cobj=cobj;
+                   this.chihuo=chihuo;
+                   this.x=0;
+                   this.y=0;
+                   this.width=50;
+                   this.height=50;
+                   this.speedX=3;
+                   this.speedY=0;
+                   this.status=0;
+                   this.fx="right";
+                   this.reg=0;
+
+               }
+               draw(){
+                   this.cobj.save();
+                   this.cobj.beginPath();
+                   this.cobj.translate(this.x+20,this.y+20);
+                   if(this.fx=="right"){
+                       this.speedX=3;
+                       this.speedY=0;
+                   }else if(this.fx=="bottom"){
+                       this.speedX=0;
+                       this.speedY=3;
+                       if(this.reg<90){
+                           this.reg+=10
+                       }else if(this.reg>90){
+                           this.reg-=10
+                       }
+                       this.x=parseInt(this.x/50)*50
+                       this.cobj.rotate(Math.PI/180*this.reg);
+                   }else if(this.fx=="top"){
+                       this.speedX=0;
+                       this.speedY=-3;
+                       if(this.reg<90){
+                           this.reg+=10
+                       }else if(this.reg>90){
+                           this.reg-=10
+                       }
+                       this.x=parseInt(this.x/50)*50
+                       this.cobj.rotate(-Math.PI/180*this.reg);
+                   }else if(this.fx=="left"){
+                       this.speedX=-3;
+                       this.speedY=0;
+                       if(this.reg<180){
+                           this.reg+=10
+                       }else if(this.reg>180){
+                           this.reg-=10;
+                       }
+                       this.y=parseInt(this.y/50)*50
+                       this.cobj.rotate(Math.PI/180*this.reg);
+                   }
+                   this.cobj.drawImage(this.chihuo[this.status],-25,-25,this.width,this.height);  //画谁  从哪里开始画 画多大
+                   this.cobj.restore();
+               }
+               updata(){
+                   this.x+=this.speedX;
+                   this.y+=this.speedY;
+                   this.status++;
+                   if(this.status>=this.chihuo.length){
+                       this.status=0;
+                   }
+               }
+            }
+
+            class douPlayer{
+                constructor(canvas,cobj,dou){
+                    this.canvas=canvas;
+                    this.cobj=cobj;
+                    this.dou=dou;
+                    this.x=300;
+                    this.y=15;
+                    this.width=20;
+                    this.height=20;
+                    this.flag=true;
+                }
+                draw(){
+                    this.cobj.save();
+                    this.cobj.beginPath();
+                    this.cobj.translate(this.x,this.y)
+                    this.cobj.drawImage(this.dou,0,0,this.width,this.height);
+                    this.cobj.restore();
+                }
+            }
+            let chiobj=new chiPlayer(canvas,cobj,chihuo);
+
+            let arr=[];
+            for(let i=0;i<10;i++){
+                for(let j=0;j<10;j++){
+                    let douobj=new douPlayer(canvas,cobj,dou);
+                    douobj.x=i*50+15;
+                    douobj.y=j*50+15;
+                    arr.push(douobj);
+                }
+            }
+            let douobj=new douPlayer(canvas,cobj,dou);
+
+            let t=setInterval(function () {
+                cobj.clearRect(0,0,500,500);
+                chiobj.draw();
+                chiobj.updata();
+                for(let i=0;i<arr.length;i++){
+                    if(arr[i]){
+                        arr[i].draw();
+                        if(arr[i].flag){
+                            if(hitPix(canvas,cobj,chiobj,arr[i])){
+                                arr[i].flag=false;
+                                arr[i]=null;
+                            }
+                        }
+                    }
+                }
+            },50)
+
+            window.onkeydown=function (e) {
+                if(e.keyCode==40){
+                    chiobj.fx="bottom"
+                }
+                if(e.keyCode==38){
+                    chiobj.fx="top"
+                }
+                if(e.keyCode==39){
+                    chiobj.fx="right"
+                }
+                if(e.keyCode==37){
+                    chiobj.fx="left"
+                }
+            }
+        }
+    </script>
+</body>
+</html>

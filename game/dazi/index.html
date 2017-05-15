@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        @keyframes move{
+            0%{
+                transform:translateX(0);
+            }
+            25%{
+                transform:translateX(-30px);
+            }
+            50%{
+                transform:translateX(0px);
+            }
+            75%{
+                transform:translateX(30px);
+            }
+            100%{
+                transform:translateX(0);
+            }
+        }
+        @keyframes rotate{
+            0%{
+                transform:rotate(0deg);
+            }
+            100%{
+                transform:rotate(360deg);
+            }
+        }
+        html,body{
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+            text-align: center;
+            line-height: 30px;
+            color: #fff;
+            font-size: 24px;
+            font-family: "微软雅黑";
+            font-weight: bold;
+            text-shadow: 0px 0px 5px #000;
+        }
+        *{
+            user-select: none;
+        }
+        .scene{
+            width: 100%;
+            height: 100%;
+            background-image: url(5.jpg);
+            opacity: 0.9;
+            position: relative;
+            background-size: 100% 100%;
+            overflow: hidden;
+        }
+        .main{
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        .control{
+            width: 1060px;
+            height:100px;
+            position: absolute;
+            top:0;
+            right:0;
+            left:0;
+            margin: auto;
+            z-index:1;
+            display: none;
+        }
+        .box{
+            width: 200px;
+            height: 65px;
+            background-image: url(img/scor.png);
+            background-repeat: no-repeat;
+            border-radius: 10px;
+            float: left;
+            position: relative;
+        }
+        .box1{
+            width: 239px;
+            height: 65px;
+            background: url(img/life.png) no-repeat center;
+            float: left;
+            margin-left: 30px;
+            position: relative;
+        }
+        .name{
+            float: left;
+            margin-top: 19px;
+             margin-left: 7px;
+        }
+
+        .scor,.state{
+            float: left;
+            width: 80%;
+            height: 35px;
+            margin-left:49px;
+            margin-top:-25px;
+            color: #fff;
+            border-radius: 5px;
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .life{
+            width:165px;height:40px;
+            background:#a8753f;
+            position:absolute;
+            right:10px;top:16px;
+            z-index:-1;
+            border-radius:5px;
+            box-shadow:0 0 10px #000 inset;
+            background-image:url(img/progress.png);
+            background-repeat:no-repeat;
+            background-size:100% 100%;
+            transition:all 1s;
+        }
+        .letter{
+            width: 80px;
+            height: 80px;
+            position: absolute;
+            background-size: 100% 100%;
+            margin-left: 50px;
+
+        }
+
+        .pause {
+            width: 65px;
+            height: 65px;
+            background: url(img/stop.png) no-repeat center;
+            background-size: 100%;
+            float: right;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        .music {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: url(img/music.png) no-repeat center;
+            position: absolute;
+            right: 300px;
+            top: 10px;
+            z-index: 9999;
+            background-color: #FEC743;
+            border: 3px solid #fff;
+            animation: rotate 3s linear infinite;
+            cursor: pointer;
+        }
+        .phb{
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: url(img/aref.png) no-repeat center;
+            position: absolute;
+            left: 300px;
+            top: 10px;
+            z-index: 9999;
+            background-color: #FEC743;
+            border: 3px solid #fff;
+            cursor: pointer;
+        }
+        .phBox{
+            width: 300px;
+            height: 300px;
+            position: absolute;
+            left:0;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            margin: auto;
+            background: #FEC743;
+            border: 10px solid#d1b878;
+            border-radius: 40px;
+        }
+        .startbox {
+            width: 710px;
+            height: 400px;
+            position: absolute;
+            left:0;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            margin: auto;
+            animation: move 3s linear infinite;
+            transition: all 1s;
+        }
+        .top {
+            width: 710px;
+            height: 250px;
+            background: url(img/logo.png) no-repeat center;
+        }
+        .bottom {
+            width: 710px;
+            height: 150px;
+        }
+        .choose {
+            width: 340px;
+            height: 100px;
+            float: left;
+            margin-top: 50px;
+            margin-right: 30px;
+            cursor: pointer;
+            background: url(img/choose.png) no-repeat center;
+            transition: all 1s;
+        }
+        .start {
+            width: 340px;
+            height: 100px;
+            float: left;
+            margin-top: 50px;
+            cursor: pointer;
+            background: url(img/start.png) no-repeat center;
+            transition: all 1s;
+        }
+        .start:hover {
+            transform: scale(1.1);
+        }
+        .choose:hover {
+            transform: scale(1.1);
+        }
+        .difficult {
+            width: 839px;
+            height: 402px;
+            background: url(img/difficult.png) no-repeat;
+            position: absolute;
+            left:0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            animation: move 3s linear infinite;
+            transition: all 1s;
+            display: none;
+        }
+        .choosebox {
+            width: 100%;
+            height: 93px;
+            margin-top: 200px;
+            display: flex;
+            justify-content: space-around;
+        }
+        .choosebox div {
+            width: 214px;
+            height: 93px;
+            cursor: pointer;
+            transition: all .5s;
+        }
+        .easy {
+            background: url(img/easy.png) no-repeat center;
+        }
+        .medium {
+            background: url(img/medium.png) no-repeat center;
+            box-shadow: 0 0 5px red;
+        }
+        .hard {
+            background: url(img/hard.png) no-repeat center;
+        }
+        .back {
+            width: 110px;
+            height: 110px;
+            background: url(img/quit.png);
+            margin: 15px auto;
+            cursor: pointer;
+            transition: all 1s;
+        }
+        .back:hover {
+            transform: rotate(180deg);     
+        }
+        .choosebox div:hover {
+            transform: scale(1.1);
+        }
+        .mask,.mask2,.mask3{
+            width:100%;height:100%;
+            background:rgba(0,0,0,0.5);
+            position: absolute;
+            left:0;
+            top:0;
+            display:none;
+            z-index:99;
+        }
+        .overbox{
+            width:484px;height:419px;
+            background:url(img/over.png) no-repeat center;
+            position: absolute;
+            left:0;
+            right:0;
+            top:0;
+            bottom:0;
+            margin:auto;
+        }
+        .score{
+            width:100px;height:40px;
+            margin-left:250px;
+            margin-top:150px;
+            line-height:40px;
+        }
+        .maxscore{
+            width:100px;
+            height:40px;
+            margin-left:250px;
+            margin-top:5px;
+            line-height:40px;
+        }
+        .btns{
+            width:250px;
+            height:93px;
+            margin:0 auto;
+            margin-top:30px;
+        }
+        .restart{
+            width:93px;height:93px;
+            background:url(img/restart.png);
+            float:left;
+            cursor:pointer;
+            transition:all 1s;
+        }
+        .restart:hover{
+            transform:rotate(360deg);
+        }
+        .quit{
+            width:93px;
+            height:93px;
+            background:url(img/quit.png);
+            float:right;
+            cursor:pointer;
+            background-size:100% 100%;
+            transition:all 1s;
+        }
+        .quit:hover{
+            transform:translateX(-30px);
+        }
+        .stopbox{
+            width:470px;height:220px;
+            background:url(img/stopbox.png);
+            position:absolute;
+            left:0;
+            right:0;
+            top:0;
+            bottom:0;
+            margin:auto;
+            display:flex;
+            align-items:flex-end;
+            justify-content:space-around;
+        }
+        .continue{
+            width:93px;height:93px;
+            background:url(img/continue.png);
+            margin-bottom:30px;
+            cursor:pointer;
+            transition:all 1s;
+        }
+        .continue:hover{
+            transform:scale(1.1);
+        }
+        .stop-restart{
+            width:93px;height:93px;
+            background:url(img/restart.png);
+            margin-bottom:30px;
+            cursor:pointer;
+            transition:all 1s;
+        }
+        .stop-restart:hover{
+            transform:rotate(360deg);
+        }
+        .stop-quit{
+            width:93px;
+            height:93px;
+            background:url(img/quit.png);
+            background-size:100% 100%;
+            margin-bottom:30px;
+            cursor:pointer;
+            transition:all 1s;
+        }
+        .stop-quit1{
+            position: absolute;
+            left:0;
+            right: 0;
+            margin: auto;
+            bottom: -40px;
+        }
+        .stop-quit:hover{
+            transform:translateX(-30px);
+        }
+        .phBox{
+         padding-top: 15px;
+        }
+        .phBox span{
+            font-size: 35px;
+            letter-spacing: 5px;
+        }
+        .phBox2 li{
+            margin-top: 30px;
+            width: 150px;
+            height:30px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="music"></div>
+    <div class="phb"></div>
+    <div class="scene">
+        <div class="main"></div>
+        <div class="control">
+            <div class="box">
+                <div class="name">分数</div>
+                <div class="scor">0</div>
+            </div>
+            <div class="box">
+                <div class="name">关卡</div>
+                <div class="state">1</div>
+            </div>
+            <div class="box box1">
+                <div class="life"></div>
+            </div>
+            <div class="btn pause"></div>
+        </div>
+        <div class="startbox">
+            <div class="top"></div>
+            <div class="bottom">
+                <div class="choose"></div>
+                <div class="start"></div>
+            </div>
+        </div>
+    </div>
+    <div class="difficult">
+        <div class="choosebox">
+            <div class="easy"></div>
+            <div class="medium"></div>
+            <div class="hard"></div>
+        </div>
+        <div class="back"></div>
+    </div>
+    <div class="mask">
+        <div class="overbox">
+            <div class="score">0</div>
+            <div class="maxscore">0</div>
+            <div class="btns">
+                <div class="restart"></div>
+                <div class="quit"></div>
+            </div>
+        </div>
+    </div>
+    <div class="mask2">
+        <div class="stopbox">
+            <div class="continue"></div>
+            <div class="stop-restart"></div>
+            <div class="stop-quit"></div>
+        </div>
+    </div>
+    <div class="mask3">
+        <div class="phBox"><span>排行榜</span>
+            <ol class="phBox2"></ol>
+             <div class="stop-quit stop-quit1"></div>
+        </div>
+    </div>
+    <audio src="demo.mp3" autoplay=""></audio>
+
+
+    <script>
+
+        // 面向对象
+        var main=document.querySelector(".main");
+        class Game {
+            constructor(main,scor,state,life,control,mask,score) {
+                this.main = main;
+                this.num = 3;
+                this.obj = {};
+                // this.score=score;
+                this.maxscore=maxscore;
+                this.control=control;
+                this.scorele=scor;
+                this.scor=0;
+                this.mask=mask;
+                this.stateele=state;
+                this.state=1;
+                this.speed=5;
+                this.life=5;
+                this.lifeele=life;
+                this.height=window.innerHeight;
+            }
+             // 开始游戏
+            start(){
+                for(let i=0;i<this.num;i++){
+                    this._createLetter();
+                }
+                this._move();
+                this._keydown();
+                this.bestscor=localStorage.bestscor?JSON.parse(localStorage.bestscor):[];
+                this.phb();
+            }
+
+            // 创建字母
+            _createLetter() {
+                this.control.style.display="block"
+                var div = document.createElement("div");
+                div.className = "letter";
+                do {
+                    var rn = Math.floor(Math.random() * 26 + 65);
+                    var le = String.fromCharCode(rn);
+                } while (this.obj[le])
+                div.style.backgroundImage=`url(imgs/${le}.png)`;
+                do {
+                    var rl = Math.random() * window.innerWidth-80;
+                } while (this._check(rl)) //重复时(真)继续循环，不重复时(假)停止循环
+                var rt = -Math.random() * 100;
+
+                div.style.left = rl + "px";
+                div.style.top = rt + "px";
+                this.obj[le] = {left: rl, top: rt, el: div};
+                this.main.appendChild(div);
+            }
+
+            // 字母不重复
+            _check(left) {//left为新产生的
+                for (let i in this.obj) {//判断重复时返回真
+                    if (this.obj[i].left - 80 < left && left < this.obj[i].left + 80) {
+                        return true;
+                    }
+                }
+            }
+
+            // 字母的移动
+            _move(){
+                this.st=setInterval(function(){
+                    for (let i in this.obj) {
+                        var t = this.obj[i].top;
+                        t += this.speed;
+                        this.obj[i].top = t;
+                        this.obj[i].el.style.top = t + "px";
+                        if(t>this.height){
+                            this.life--;
+                            var zhi=this.life*20+"%";
+                            this.lifeele.style.backgroundSize=zhi+" 100%";
+//                            this.lifeele.innerHTML=this.life;
+                            this.main.removeChild(this.obj[i].el);
+                            delete  this.obj[i];
+                            this._createLetter();
+                            if(this.life==-1){
+                                this._gameover();
+                                return;
+                            }
+                        }
+                    }
+                }.bind(this),50);
+            }
+
+            // 键盘按下字母会消失
+            _keydown(){
+                document.onkeydown = function (e) {
+                    var keycode = e.keyCode;
+                    var l = String.fromCharCode(keycode);
+                    if (this.obj[l]) {
+                        this.main.removeChild(this.obj[l].el);
+                        delete this.obj[l];
+                        this.scor++;
+                        this.scorele.innerHTML=this.scor;
+                        if(this.scor%10==0){
+                            this._upstate();
+                        }
+                        this._createLetter();
+                    }
+                }.bind(this)
+            }
+
+            //关卡
+            _upstate(){   
+                this.state++;
+                this.stateele.innerHTML=this.state;
+                if(this.state<=4){
+                    this.num++;
+                    this._createLetter();
+                }else{
+                    this.speed++;
+                }
+            }
+
+            //游戏结束 
+            _gameover(){
+         
+                // this.maxscore.innerHTML=this.scor;
+
+                if(this.bestscor.length<3||this.bestscor.length>=3&&this.scor>this.bestscor[2].scor){
+                    var player=prompt("请输入大侠名字");
+                    this.bestscor.push({player,scor:this.scor});
+                    this.bestscor.sort(function(a,b){
+                        if(a.scor>b.scor){
+                            return -1;
+                        }else{
+                            return 1;
+                        }
+                    })
+                    if(this.bestscor.length>3){
+                        this.bestscor.pop();
+                    }
+                    localStorage.bestscor=JSON.stringify(this.bestscor);
+                    // this.maxscore.innerHTML=this.scor;
+                    // this.bestscor.innerHTML=this.bestscor[0].scor;
+                }
+
+                mask.style.display="block";
+                this.main.innerHTML="";
+                this.obj={};
+                this.speed=5;
+                this.scor=0;
+                this.num = 3;
+                this.scorele.innerHTML=0;
+                this.stateele.innerHTML=1;
+                this.life=5;
+                this.lifeele.style.backgroundSize=this.life*20+"%"+" 100%";
+                this.main.innerHTML=null;
+                clearInterval(this.st);
+            }
+            phb(){
+                var data=localStorage.bestscor?JSON.parse(localStorage.bestscor):[];
+                data.forEach(function (v,i) {
+                    var div=document.createElement("li");
+                    div.innerHTML=`${data[i].player}${data[i].scor}`;
+                    phBox2.appendChild(div);
+                })
+            }
+
+            // 游戏的暂停
+            pause(){
+                clearInterval(this.st);
+                document.onkeydown=null;
+            }
+
+             // 游戏的继续
+            play(){
+                this._move();
+                this._keydown();
+            }
+        }
+
+
+        var start=document.querySelector(".start");
+        var scor=document.querySelector(".scor");
+        var state=document.querySelector(".state");
+        var pause=document.querySelector(".pause");
+        var life=document.querySelector(".life");
+        var startbox=document.querySelector(".startbox");
+        var control=document.querySelector(".control");
+        var music=document.querySelector(".music");
+        var audio=document.querySelector("audio");
+        var choose=document.querySelector(".choose");
+        var difficult=document.querySelector(".difficult");
+        var back=document.querySelector(".back");
+        var control=document.querySelector(".control");
+        var choosebtn=document.querySelectorAll(".choosebox div");
+        var mask=document.querySelector(".mask");
+        var mask2=document.querySelector(".mask2");
+        var mask3=document.querySelector(".mask3");
+        var score=document.querySelector(".score");
+        var maxscore=document.querySelector(".maxscore");
+        var restart=document.querySelector(".restart");
+        var quit=document.querySelector(".quit");
+        var stop=document.querySelector(".stop");
+        var continuebtn=document.querySelector(".continue");
+        var stoprestart=document.querySelector(".stop-restart");
+        var stoprestart1=document.querySelector(".stop-restart1");
+        var stopquit=document.querySelector(".stop-quit");
+        var stopquit1=document.querySelector(".stop-quit1");
+        var phb=document.querySelector(".phb");
+        var phBox2=document.querySelector(".phBox2");
+
+
+        var game=new Game(main,scor,state,life,control,mask,score,maxscore);
+        var startControl=true;
+
+        // 点击开始游戏
+        start.onclick=function () {
+            if(startControl){
+//                startControl=false;
+                game.start();
+            }
+            startbox.style.display="none";
+            phb.style.display="none";
+        };
+
+        //点击开始难度的选择 
+        choose.onclick=function () {
+            difficult.style.display="block";
+            startbox.style.display="none";
+        }
+        //退出难度的选择返回开始界面 
+        back.onclick=function () {
+            startbox.style.display="block";
+            difficult.style.display="none";
+        }
+
+        //选择关卡
+        for (var i = 0; i < choosebtn.length; i++) {
+            choosebtn[i].onclick=function () {
+                for (var j = 0; j < choosebtn.length; j++) {
+
+                    choosebtn[j].style.boxShadow="none";
+                };
+                this.style.boxShadow="0 0 5px red";
+                if(this.className=="easy"){
+                    game.num=1;
+                }else if(this.className=="medium"){
+                    game.num=3;
+                }else{
+                    game.num=5;
+                }
+            };
+        }
+
+        // 游戏结束后重新再来
+        restart.onclick=function(){
+            if(flag){
+            game._gameover();
+            mask.style.display="none";
+            game.start();
+            }else{
+                game.play();
+            }
+        };
+
+        // 游戏结束后退出返回开始界面
+        quit.onclick=function(){
+            if(flag){
+            game._gameover();
+            mask.style.display="none";
+            control.style.display="none"
+            startbox.style.display="block";
+        }else{
+                game.play();
+            }
+        }
+
+        // 游戏中点击暂停的3个事件
+        var flag=true;
+        pause.onclick=function () {
+            if(flag){
+//                flag=false;
+                game.pause();
+                mask2.style.display="block";
+
+                // 游戏中点击暂停的继续
+                continuebtn.onclick=function () {
+
+                    mask2.style.display="none";
+                    game.play();
+                };
+
+                // 游戏中点击暂停的重新再来
+                stoprestart.onclick=function(){
+
+                    mask2.style.display="none";
+                    game._gameover();
+                    mask.style.display="none"
+                    game.start();
+                }
+
+
+                // 游戏中点击暂停的退出返回开始界面
+                stopquit.onclick=function(){
+                    game._gameover();
+                    mask.style.display="none";
+                    mask2.style.display="none";
+                    control.style.display="none";
+                    startbox.style.display="block";
+                }
+
+            }else{
+//                flag=true;
+                game.play();
+            }
+        };
+       
+        //音乐播放控制
+         music.onclick= function(){
+            if(flag){
+                music.style.animationPlayState="paused";
+                audio.pause()
+            }else{
+                music.style.animationPlayState="running";
+                audio.play()
+            }
+            flag=!flag;
+        }
+
+        //排行榜控制
+        phb.onclick=function () {
+            mask.style.display="none";
+            mask2.style.display="none";
+            mask3.style.display="block";
+            game.phb();
+            stopquit1.onclick=function(){
+                mask.style.display="none";
+                mask2.style.display="none";
+                mask3.style.display="none";
+                control.style.display="none";
+                startbox.style.display="block";
+            }
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

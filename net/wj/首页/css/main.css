@@ -1,0 +1,1007 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Microsoft YaHei';
+    font-size: 12px;
+    color: #333333;
+    background: #fff;
+    font: 12px/1.5 'Microsoft YaHei';
+}
+.neikuan{
+    width: 1200px;
+    margin: 0 auto;
+}
+/*头部开始*/
+header{
+	width: 100%;
+    height: 38px;
+    border-bottom: 1px solid #ccc;
+    background: #fff;
+    color: #999;
+}
+header .mn{
+	height: 14px;
+    line-height: 14px;
+    font-size: 12px;
+    padding-top: 12px;
+    z-index: 50;
+    position: relative;
+}
+header .mn .app{
+	float: left;
+    display: inline;
+    line-height: 22px;
+    margin-right: 15px;
+}
+header .mn .app span{
+	padding-right: 20px;
+    color: #000;
+    float: left;
+}
+header .mn .app a{
+	color: #999;
+	margin-right: 3px;
+	float: left;
+}
+header .mn a:hover{
+	color: #c4166e;
+}
+header .mn .menu{
+	float: right;
+    display: inline;
+    border-right: 1px dotted #cccccc;
+    padding: 0 10px;
+    position: relative;
+}
+header .mn .menu em{
+	display: block;
+    float: left;
+    position: relative;
+    z-index: 3;
+}
+header .mn .menu a{
+	color: #999;
+	font-weight: normal;
+    font-style: normal;
+}
+.menu i{
+	position: relative;
+    z-index: 3;
+    height: 6px;
+    width: 10px;
+    float: left;
+    display: block;
+    margin: 5px 0 0 5px;
+    background: url(../img/ico-2015-12.png) -10px -6px no-repeat;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    font-weight: normal;
+    font-style: normal;
+}
+.wdxiala{
+	position: absolute;
+    top: -23px;
+    left: -1px;
+    border: 1px solid #ccc;
+    padding: 44px 10px 10px 16px;
+    background: #fff;
+    z-index: 2;
+    width: 60px;
+    line-height: 20px;
+    overflow: hidden;
+    height: 0px;
+    opacity: 0;
+    display: none;
+    transition: all .5s;
+    -webkit-transition: all .5s;
+    opacity: 1;
+    height: auto;
+}
+.wdxiala li a:hover{
+	color: #a21459;
+}
+.menu:hover .wdxiala{
+	display: block;
+}
+.menu:hover i{
+	background: url(../img/ico-2015-12.png) -10px 0px no-repeat;
+}
+.menu em a:hover{
+	color: #a21459;
+}
+/*头部结束*/
+/*头部导航开始*/
+.topNav{
+	background: #fff;
+    width: 100%;
+}
+.Nav{
+	padding: 20px 0;
+    background: #fff;
+    height: 90px;
+    width: 100%;
+}
+.logo{
+	height: 90px;
+    width: 160px;
+    background: url(../img/leico.png) no-repeat;
+    float: left;
+    display: inline;
+    cursor: pointer;
+}
+.gouwu{
+	position: relative;
+    float: right;
+    display: inline;
+    cursor: pointer;
+    background: #fff;
+    margin-top: 20px;
+    z-index: 40;
+}
+.gouwubox{
+	border: 1px solid #a40c59;
+    border-radius: 2px;
+    height: 28px;
+    line-height: 28px;
+    overflow: hidden;
+    color: #fff;
+}
+.gouwuList{
+	border: 1px solid #ddd;
+    position: absolute;
+    top: 28px;
+    right: 0px;
+    width: 400px;
+    height: 106px;
+    background: #fff;
+    display: none;
+    z-index: 0;
+    font-size: 12px;
+    text-align: center;
+    line-height: 106px;
+}
+.dang{
+	width: 156px;
+	height: 3px;
+	background: #fff;
+	position: absolute;
+	top: -1px;
+	right: 0;
+	height: 3px;
+}
+.gouwu:hover .gouwubox{
+	border: 1px solid #ddd;
+}
+.gouwu:hover .car-tw{
+	background: #fff url(../img/ico-2015-12.png) 10px -75px no-repeat;
+    width: 70px;
+	color: #333;
+}
+.gouwu:hover i{
+	background: url(../img/ico-2015-12.png) -20px 0px no-repeat;
+}
+.gouwu:hover .gouwuList{
+	display: block;
+}
+.car-tw{
+	float: left;
+    display: inline;
+    background: #a40c59 url(../img/ico-2015-12.png) 10px -47px no-repeat;
+    width: 70px;
+    padding-left: 40px;
+}
+.car-numb{
+	float: left;
+    display: inline;
+    margin-left: 12px;
+    color: #a40e59;
+}
+.gouwu i{
+	height: 6px;
+    width: 10px;
+    float: left;
+    display: block;
+    margin: 12px 10px 0 5px;
+    background: url(../img/ico-2015-12.png) -20px -6px no-repeat;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    font-weight: normal;
+    font-style: normal;
+}
+.hd-search{
+	position: relative;
+    float: left;
+    display: inline;
+    margin: 20px 0 0 200px;
+    z-index: 40;
+}
+.searchClass{
+	width: 530px;
+	height: 53px;
+	margin: 0 auto;
+}
+.search-text{
+	float: left;
+    border: 1px solid #a40c59;
+    display: inline;
+    height: 28px;
+    line-height: 28px;
+    padding: 0 80px 0 10px;
+    width: 439px;
+    color: #666;
+    outline: none;
+}
+.search-btn{
+	display: block;
+    float: left;
+    height: 30px;
+    width: 60px;
+    background: url(../img/btn-search.png) 0 0 no-repeat;
+    margin-left: -61px;
+}
+.search_tips{
+	overflow: hidden;
+    width: 530px;
+    padding-top: 5px;
+}
+.search_tips a{
+	display: block;
+    float: left;
+    margin-right: 10px;
+    color: #999;
+}
+/*头部导航结束*/
+/*banner开始*/
+.bannerTop{
+	background: #fff;
+    width: 100%;
+    border-bottom: 1px solid #a21459;
+}
+.topmeau{
+	position: relative;
+    width: 1200px;
+    margin: 0 auto;
+    border-bottom: 0px solid #aaa;
+    height: 30px;
+    line-height: 30px;
+    font-size: 18px;
+    background: #fff;
+    z-index: 30;
+}
+.topmeau li{
+	display: inline;
+    float: left;
+    height: 30px;
+    border-bottom: 0px solid #aaa;
+    margin-bottom: -4px;
+    position: relative;
+}
+.topmeau a{
+	display: block;
+    margin: 0 35px 0 0;
+    font-size: 14px;
+    color: #444;
+}
+.topmeau li a:hover{
+    color: #a21459;
+}
+.topmeau_z{
+	background: #222 url(../img/ico-2015-12.png) 130px -573px no-repeat;
+    width: 166px;
+    margin-right: 25px;
+}
+.topmeau_z .allsp{
+	color: #fff;
+    background: url(../img/ico-2015-12.png) 3px -604px no-repeat;
+    line-height: 28px;
+    text-indent: 35px;
+}
+.bannerNav{
+	position: absolute;
+    top: 30px;
+    left: 0px;
+    z-index: 2;
+    background: #f8f8f8;
+    height: 400px;
+    width: 164px;
+    border-left: 1px solid #e5e5e5;
+    border-right: 1px solid #e5e5e5;
+    border-top: 1px solid #a21459;
+}
+.bannerNavbox{
+	width: 160px;
+    padding: 0px;
+    overflow: hidden;
+    height: 50px;
+    margin-left: 4px;
+}
+.bannerNavbox h2{
+    font-size: 14px;
+    line-height: 49px;
+    width: 125px;
+    padding-left: 50px;
+    height: 49px;
+    font-weight: normal;
+    border-bottom: 1px solid #e4e4e4;
+    background-repeat: no-repeat;
+    background-position: 0 center;
+}
+.bannerNavbox h2 a{
+	color: #414141;
+}
+.bannerNavbox:hover h2 a{
+	color: #fff;
+}
+.bannerNavbox .iterm01{
+	background-image: url(../img/sorticon_xuan.png)
+}
+.bannerNavbox:hover .iterm01{
+	background-image: url(../img/sorticon_xuan_01.png)
+}
+.bannerNavbox .iterm02{
+	background-image: url(../img/sorticon_putao.png)
+}
+.bannerNavbox:hover .iterm02{
+	background-image: url(../img/sorticon_putao_01.png)
+}
+.bannerNavbox .iterm03{
+	background-image: url(../img/sorticon_yang.png)
+}
+.bannerNavbox:hover .iterm03{
+	background-image: url(../img/sorticon_yang_01.png)
+}
+.bannerNavbox .iterm04{
+	background-image: url(../img/sorticon_beer.png)
+}
+.bannerNavbox:hover .iterm04{
+	background-image: url(../img/sorticon_beer_01.png)
+}
+.bannerNavbox .iterm05{
+	background-image: url(../img/sorticon_round.png)
+}
+.bannerNavbox:hover .iterm05{
+	background-image: url(../img/sorticon_round_01.png)
+}
+.bannerNavbox .iterm06{
+	background-image: url(../img/sorticon_enm.png)
+}
+.bannerNavbox:hover .iterm06{
+	background-image: url(../img/sorticon_enm_01.png)
+}
+.bannerNavbox .iterm07{
+	background-image: url(../img/sorticon_rupin.png)
+}
+.bannerNavbox:hover .iterm07{
+	background-image: url(../img/sorticon_rupin_01.png)
+}
+.bannerNavList{
+	width: 690px;
+    height: 390px;
+    left: 165px;
+    padding-top: 10px;
+    display: none;
+    background: #fff;
+    border-right: 10px solid rgba(146,146,146,0.2);
+    border-bottom: 1px solid rgba(146,146,146,0.2);
+    position: absolute;
+    top:0px;
+    z-index: 2;
+    border-top: 1px solid #a21459;
+}
+.bannerNavList .listyou{
+	float: right;
+    width: 280px;
+    height: 350px;
+}
+.bannerNavList .listzuo{
+	width: 280px;
+	height: 100%;
+	line-height: 20px;
+    margin-left: 30px;
+}
+.listzuo_S b{
+	border-bottom: 1px solid #E4E4E4;
+    padding-top: 10px;
+    font-weight: bold;
+    display: block;
+    color: #a40c59;
+    font-size: 12px;
+}
+.listzuo_S a{
+	color: #666666;
+    font-size: 12px;
+    display: inline-block;
+    padding-right: 5px;
+}
+.bannerNavbox:hover .bannerNavList{
+	display: block;
+}
+.topmeau li>a.active{
+	border-bottom: 3px solid #a21459;
+    height: 27px;
+}
+.topmeau li img{
+	position: absolute;
+    right: 13px;
+    top: -6px;
+}
+.banner{
+	width: 100%;
+    height: 400px;
+    position: relative;
+}
+.bannerBox{
+	width: 100%;
+    height: 400px;
+    position: relative;
+}
+.bannerTu{
+	height: 400px;
+	width: 100%;
+	position: absolute;
+	left: 0;
+	top:0;
+	opacity: 0;
+	z-index: 1;
+}
+.bannerTu1{
+	background: url(../img/1493271385466124.jpg) center top no-repeat;
+}
+.bannerTu2{
+	background: url(../img/1492998211069048.jpg) center top no-repeat;
+}
+.bannerTu3{
+	background: url(../img/1491976100274065.jpg) center top no-repeat;
+}
+.bannerTu4{
+	background: url(../img/1493285347608191.jpg) center top no-repeat;
+}
+.bannerTu5{
+	background: url(../img/1492420921938371.jpg) center top no-repeat;
+}
+.bannerTu6{
+	background: url(../img/1492045398700835.jpg) center top no-repeat;
+}
+.bannerTu7{
+	background: url(../img/1489392264766226.jpg) center top no-repeat;
+}
+.bannerTu8{
+	background: url(../img/1484635177282778.jpg) center top no-repeat;
+}
+.banner .lunbodian{
+	width: 187px;
+	height: 16px;
+	position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    bottom: 20px;
+    z-index: 10;
+}
+.banner .lunbodian li{
+    width: 13px;
+    height: 16px;
+    background: url(../img/in_png.png) -20px -381px;
+    float: left;
+    margin-left: 10px;
+}
+.banner .lunbodian .seld{
+	background-position: -0 -382px;
+    width: 16px;
+    height: 16px;
+}
+.banner .jian{
+    width: 32px;
+    height: 38px;
+    background: url(../img/in_png.png) no-repeat 0 0;
+    float: left;
+    margin-left: 2px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    z-index: 10;
+}
+.banner .zuo{
+	background-position: 0 -416px;
+	right: 430px;
+}
+.banner .you{
+	background-position: -34px -416px;
+	right: 395px;
+}
+/*banner结束*/
+/*今日限购开始*/
+.jinri{
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+.jinri_title,.lexiang_title,.rexiaotitle,.fenqititle{
+	color: #999;
+    font-size: 14px;
+    text-align: center;
+    padding-bottom: 10px;
+}
+.jinri_title p,.lexiang_title p,.rexiaotitle p,.fenqititle p{
+	width: 120px;
+    margin: 0 auto;
+    font-size: 22px;
+    color: #000;
+    overflow: hidden;
+    padding-bottom: 5px;
+}
+.jinri_title p em{
+	background: url(../img/in_png.png) 0 -556px no-repeat;
+    width: 27px;
+    height: 35px;
+    display: block;
+    float: left;
+    margin-right: 5px;
+    font-weight: normal;
+    font-style: normal;
+}
+.jinri_title a{
+	color: #cc0000;
+    margin-left: 10px;
+}
+.jinri_cont{
+	border: 1px solid #eee;
+    overflow: hidden;
+    height: 280px;
+}
+.time{
+	width: 198px;
+    float: left;
+    background: #f9f7f7;
+    height: 280px;
+}
+.time p{
+    height: 75px;
+    line-height: 75px;
+    text-align: center;
+    color: #cc0000;
+    font-size: 14px;
+    font-weight: bold;
+}
+.djs{
+    width: 198px;
+    background: url(../img/time_BJ.jpg) center top no-repeat;
+    height: 198px;
+    color: #cc0000;
+    font-size: 30px;
+    text-align: center;
+    padding-top: 67px;
+    position: relative;
+}
+.mb{
+	width: 129px;
+	height: 47px;
+	position: absolute;
+	left: 0;
+	right: 0;
+	margin: auto;
+	top:55px;
+}
+.mb1{
+	float: left;
+    width: 35px;
+    height: 37px;
+    color: #cc0000;
+    font-size: 30px;
+    font-family: Arial;
+    font-weight: 700;
+    border-radius: 3px;
+    text-align: center;
+    line-height: 37px;
+    margin-top: 10px;
+}
+.mbd{
+	float: left;
+    margin: 22px 4px 0;
+    width: 4px;
+    height: 12px;
+}
+.mbd1{
+	margin-bottom: 4px;
+	width: 4px;
+    height: 4px;
+    border-radius: 100%;
+    background-color: #440106;
+}
+.mbd2{
+	margin-top: 5px;
+	width: 4px;
+    height: 4px;
+    border-radius: 100%;
+    background-color: #440106;
+}
+.jinri_box{
+	width: 1000px;
+	float: right;
+	height: 280px;
+}
+.jrtu{
+	width: 200px;
+    float: left;
+    background: url(../img/in_png.png) 199px -597px no-repeat;
+    height: 280px;
+    position: relative;
+    overflow: hidden;
+}
+.jrtu1{
+	background: none;
+}
+.jinrituu{
+	width: 200px;
+    height: 210px;
+    padding-bottom: 15px;
+    text-align: center;
+    vertical-align: bottom;
+    display: table-cell;
+    position: relative;
+}
+.jinrituu img{
+	width: 200px;
+    height: 210px;	
+}
+.jinrituz{
+	width: 162px;
+    padding: 0 20px;
+    height: 48px;
+    padding-top: 7px;
+    overflow: hidden;
+}
+.jinrituz p{
+	text-align: center;
+    color: #666;
+    font-size: 14px;
+    height: 20px;
+    line-height: 20px;
+    overflow: hidden;
+}
+.jinrituz em{
+	color: #a21459;
+    font-size: 18px;
+    line-height: 18px;
+    font-weight: bold;
+    display: block;
+    padding-top: 3px;
+    overflow: hidden;
+    height: 18px;
+    font-style: normal;
+}
+.jiaru{
+    transition: all 0.3s;
+    bottom: -50px;
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    width: 100%;
+    height: 48px;
+    line-height: 48px;
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 14px;
+    text-align: center;
+    background: #a21459;
+    text-indent: 30px;
+}
+.jiaru span{
+	background: url(../img/in_png.png) 50px -1016px no-repeat;
+    display: block;
+    float: left;
+    width: 100%;
+}
+.jrtu:hover .jiaru{
+	transform:translateY(-50px);
+}
+/*今日限购结束*/
+/*乐享盛宴开始*/
+.lexiang{
+	padding-bottom: 50px;
+}
+.lexiang_title{
+	color: #999;
+    font-size: 14px;
+    text-align: center;
+    padding-bottom: 10px;
+}
+.lexiang_title p em{
+	background: url(../img/in_png.png) -44px -556px no-repeat;
+    width: 27px;
+    height: 35px;
+    float: left;
+    margin-right: 5px;
+}
+.lexiang_cont{
+	border: 1px solid #e5e5e5;
+    overflow: hidden;
+    height: 471px;
+    position: relative;
+}
+.lexiang_contS{
+	border-bottom: 1px solid #e5e5e5;
+    overflow: hidden;
+    font-size: 14px;
+}
+.lexiang_contS a{
+	display: block;
+    width: 239px;
+    color: #333;
+    border-left: 1px solid #e5e5e5;
+    text-align: center;
+    height: 50px;
+    line-height: 50px;
+    text-decoration: none;
+    float: left;
+    background: #fbfbfb;
+    margin-left: -1px;
+    position: relative;
+    overflow: hidden;
+}
+.lexiang_contS a:last-of-type{
+	width: 242px;
+}
+.lexiang_contS em{
+	display: none;
+    background: #a21459;
+    width: 30px;
+    height: 4px;
+    position: absolute;
+    z-index: 1;
+    bottom: 8px;
+    left: 105px;
+}
+.lexiang_contX{
+	height: 420px;
+	position: absolute;
+	left: 0;
+	top: 51px;
+	/*display: none;*/
+}
+.contX_z{
+	float: left;
+    width: 480px;
+    height: 420px;
+}
+.contX_z img{
+	width: 480px;
+    height: 420px;
+}
+.contX_y{
+	float: right;
+    width: 718px;
+    height: 420px;
+}
+.contX_ybox{
+	width: 358px;
+    float: left;
+    border-right: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    height: 209px;
+}
+.contX_ybox1{
+	border-right:0;
+}
+.contX_ybox2{
+	border-bottom:0;
+}
+/*乐享盛宴结束*/
+/*热销开始*/
+.rexiao{
+	padding-bottom: 50px;
+}
+.rexiaotitle em{
+	background: url(../img/in_png.png) -87px -556px no-repeat;
+    width: 27px;
+    height: 35px;
+    display: block;
+    float: left;
+    margin-right: 5px;
+}
+.rexiaocont{
+	border: 1px solid #d9d9d9;
+    height: 400px;
+    overflow: hidden;
+}
+.rcont{
+	border-right: 1px solid #d9d9d9;
+    height: 400px;
+    float: left;
+    width: 298.5px;
+    overflow: hidden;
+}
+.rcont img{
+	width: 298.5px;
+	height: 400px;
+	transition:all 0.5s;
+}
+.rcont img:hover{
+	transform: translateX(-15px);
+	/*transform: translate3d(0, -20px, 0);*/
+}
+.rcont1{
+	border-right:0;
+}
+/*热销结束*/
+/*分期开始*/
+.fenqi{
+	padding-bottom: 50px;
+}
+.fenqititle em{
+	width: 27px;
+    height: 35px;
+    background: url(../img/in_png.png) -131px -556px no-repeat;
+    display: block;
+    float: left;
+    margin-right: 5px;
+}
+.fenqititle .fff{
+	width: 190px;
+}
+.fenqicont{
+	border: 1px solid #d9d9d9;
+    height: 185px;
+}
+.fenqibox{
+	border-right: 1px solid #d9d9d9;
+    height: 185px;
+    float: left;
+    width: 298.5px;
+    opacity: 1;
+}
+.fenqibox:hover{
+	opacity: 0.8;
+}
+.fenqibox1{
+	border-right: 0;
+}
+.fenqibox img{
+	width: 298.5px;
+	height: 185px;
+}
+/*分期结束*/
+/*底部开始*/
+footer{
+	border-top: 1px solid #ccc;
+    width: 100%;
+    background: #fff;
+    font-family: 'Microsoft YaHei';
+    overflow: hidden;
+}
+.slogen{
+	padding: 30px 0;
+    overflow: hidden;
+    width: 1120px;
+    margin: 0 auto;
+    padding-left: 60px;
+}
+.slogen dl{
+	float: left;
+    display: inline;
+    width: 280px;
+    overflow: hidden;
+    margin-top: 22px;
+}
+.slogen dl dt{
+	float: left;
+    display: inline;
+    height: 50px;
+    width: 50px;
+    background: url(../img/ico-2015-12s.png) 0 0 no-repeat;
+    margin-right: 10px;
+}
+.s1{
+    background-position: 0 -55px;
+}
+.s2{
+    background-position: 0 -110px;
+}
+.s3{
+    background-position: 0 -165px;
+}
+.slogen dl dd{
+	float: left;
+    display: inline;
+    font-size: 14px;
+    margin-top: 6px;
+}
+.slogen dl dd b{
+	font-size: 16px;
+    padding-top: 10px;
+    display: block;
+    color: #666;
+    font-weight: bold;
+}
+.footZ{
+	width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-top: 1px dashed #ccc;
+    padding: 30px 0;
+}
+.footZ dl{
+	float: left;
+    display: inline;
+    width: 145px;
+    font-size: 12px;
+    line-height: 24px;
+}
+.footZ dl dt{
+	font-size: 18px;
+    padding-bottom: 10px;
+}
+.footZ dl dd a{
+	color: #333;
+}
+.footZ dl:last-of-type{
+	width: 180px;
+}
+.ewm1{
+	float: left;
+    display: inline;
+    margin-left: 10px;
+    width: 80px;
+    text-align: center;
+}
+.ewm1 img{
+	height: 80px;
+    width: 80px;
+}
+.footX{
+	background: #000;
+    width: 100%;
+    color: #fff;
+}
+.footXX{
+	line-height: 20px;
+    font-size: 12px;
+    margin: 0 auto;
+    padding: 20px 0;
+    color: #fff;
+    width: 1200px;
+    overflow: hidden;
+}
+.footX_Z{
+	width: 970px;
+    float: left;
+}
+.footX_Z a{
+	color: #fff;
+	float: left;
+}
+.footX_Z span{
+	margin: 0 4px;
+	float: left;
+}
+.footX_Y{
+	width: 230px;
+    float: left;
+    text-align: right;
+    background: url(../img/ico-2015-12.png) 0 -646px no-repeat;
+    line-height: 25px;
+}
+/*底部结束*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="http://at.alicdn.com/t/font_tpgfmrfyeitl0udi.css">
+    <style>
+        .container{
+            width: 600px;
+            height: 400px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        .container video{
+            width: 100%;
+            height: 90%;
+            background: #000;
+        }
+        .container .controls{
+            width: 100%;
+            height: 10%;
+            display: flex;
+        }
+        .start{
+            width: 40px;
+            height: 40px;
+        }
+        .reload{
+            width: 40px;
+            height: 40px;
+        }
+        .icon{
+            font-family: iconfont;
+            text-align: center;
+            line-height: 40px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .progress{
+            width: auto;
+            height: 10px;
+            /*剩余空间自动分配*/
+            flex-grow: 1;
+            margin-top: 15px;
+            background: #ccc;
+            cursor: pointer;
+        }
+        .inner{
+            width: 0;
+            height: 10px;
+            background: #333;
+            cursor: pointer;
+        }
+        .time{
+            width: 80px;
+            height: 40px;
+            margin: 0 10px;
+            line-height: 40px;
+            font-size: 12px;
+        }
+        .time span{
+              float: left;
+              width: 43%;
+          }
+        .time b{
+            float: left;
+            margin-right: 4px;
+        }
+        .volume{
+            width: 40px;
+            height: 40px;
+            position: relative;
+        }
+        .volume span{
+            display: block;
+            width: 40px;
+            height: 40px;
+            position: relative;
+            z-index: 1;
+        }
+        .bg{
+            width: 40px;
+            height: 150px;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            background: rgba(225,225,225,0.5);
+            display: none;
+        }
+        .vol{
+            width: 10px;
+            height: 110px;
+            background: #ccc;
+            margin: 0 auto;
+        }
+        .volinner{
+            width: 10px;
+            height: 10px;
+            background: #fd4889;
+            float: left;
+            cursor: pointer;
+        }
+        .mask{
+            width: 40px;
+            height: 110px;
+            position: absolute;
+            top:0;
+            left: 0;
+            cursor: pointer;
+        }
+        .fullscreen{
+            width: 40px;
+            height: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <video>
+            <source src="1.mp4">
+        </video>
+        <div class="controls">
+            <div class="start icon">&#xe638;</div>
+            <div class="reload icon">&#xe6ed;</div>
+            <div class="progress">
+                <div class="inner"></div>
+            </div>
+            <div class="time">
+                <span id="now">00:00</span><b>/</b>
+                <span id="all">00:00</span>
+            </div>
+            <div class="volume">
+                <span class="icon">&#xe607;</span>
+                <div class="bg">
+                    <div class="vol">
+                        <div class="volinner"></div>
+                    </div>
+                    <div class="mask"></div>
+                </div>
+            </div>
+            <div class="fullscreen icon">&#xe7b5;</div>
+        </div>
+    </div>
+
+
+</body>
+<script src="hover.js"></script>
+    <script>
+
+        var container=document.querySelector(".container");
+        var video=document.querySelector("video");
+        var startbtn=document.querySelector(".start");
+        var reload=document.querySelector(".reload");
+        var progress=document.querySelector(".progress");
+        var inner=document.querySelector(".inner");
+        var now=document.querySelector("#now");
+        var all=document.querySelector("#all");
+        var volume=document.querySelector(".volume");
+        var vol=document.querySelector(".vol");
+        var volinner=document.querySelector(".volinner");
+        var bg=document.querySelector(".bg");
+        var mask=document.querySelector(".mask");
+        var volicon=document.querySelector(".volume .icon");
+        var fullscreen=document.querySelector(".fullscreen");
+        var l=progress.offsetWidth;
+
+        var startflag=true;
+        startbtn.onclick=function () {
+            if(startflag){
+                video.play();
+                startbtn.innerHTML="&#xe640;";
+            }else{
+                video.pause();
+                startbtn.innerHTML="&#xe638;";
+            }
+            startflag=!startflag;
+        };
+        reload.onclick=function () {
+            video.load();
+            inner.style.width=0;
+            startbtn.innerHTML="&#xe638;";
+            startflag=true;
+        };
+        var duration=0;
+        var nowtime=0;
+        video.oncanplay=function () {//当浏览器可以播放音频/视频时 //不能用在页面加载后 因为页面加载完时 vodeo早已加载完 不能实现
+            duration=video.duration;
+            all.innerHTML=time(duration);
+        };
+        video.ontimeupdate=function () {  //当目前的播放位置已更改时
+            nowtime=video.currentTime;
+            now.innerHTML=time(nowtime);
+            var width=nowtime/duration;
+            inner.style.width=width*100+"%";
+        };
+        function time(t) {
+            var mins=Math.floor(t/60);
+            var secs=Math.floor(t%60);
+            return mins+":"+(secs<10?"0"+secs:secs);
+        }
+        progress.onmousedown=function(e){
+            var ox=e.offsetX; //鼠标按下某位置到(直接或最早事件源)progress开始位置的距离
+            var bili=ox/l; //鼠标按下某位置到progress开始位置的距离  与  progress总长的一个比例
+            var pos=duration*bili; //当前播放时间的位置 (duration返回当前音频/视频的长度（以秒计）)
+            video.currentTime=pos;  //currentTime设置或返回音频/视频中的当前播放位置（以秒计）
+            document.onmousemove=function (e) {
+//                var ox=e.offsetX;  //onmousemove用e.offsetX;存在Bug
+                var ox=e.clientX-progress.offsetLeft;
+                var bili=ox/l;
+                var pos=duration*bili; //当前播放时间位置 (duration返回当前音频/视频的长度（以秒计）)
+                video.currentTime=pos;
+            }
+            document.onmouseup=function (e) {
+                document.onmousemove=null;
+                document.onmouseup=null;
+            }
+        }
+        //解决volinner鼠标移入移出事件多次触发问题(表面效果一样)，换用hover.js写法(先引入)
+        hover(volume,function () {
+            bg.style.display="block";
+        },function () {
+            bg.style.display="none";
+            mask.onmousemove=null;
+            mask.onmouseup=null;
+        });
+        //mask事件调用两次(公用)
+        function fnvol(e) {
+            var oy=e.offsetY;
+            oy=oy>=100?100:oy; //音量小块不超出父级
+            var v=1-oy/100; //音量值
+            video.volume=v; // volume (0-1)	设置或返回音频/视频的音量
+            if(v==0){
+                volicon.innerHTML="&#xe61e;"
+            }else{
+                volicon.innerHTML="&#xe607;"
+            }
+            volinner.style.marginTop=oy+"px";  //marginTop存在Bug  在css中把volinner设置float:left浮动(不影响布局)
+        }
+        //给音量区域加遮罩  把事件加到遮罩上 解决offsetY带来的bug
+        mask.onmousedown=function (e) {
+            fnvol(e);
+            mask.onmousemove=function (e) {
+                fnvol(e);
+            }
+            mask.onmouseup=function () {
+                mask.onmousemove=null;
+                mask.onmouseup=null;
+            }
+        }
+        //同一位置(按钮)发生多次事件 开关格式：
+        var volfalg=true;
+        volicon.onclick=function () {
+            if(volfalg){
+                volicon.innerHTML="&#xe61e;"
+                video.muted=true; //muted 设置是否静音
+            }else{
+                volicon.innerHTML="&#xe607;"
+                video.muted=false;
+            }
+            volfalg=!volfalg;
+        }
+        //h5  中requestFullScreen任何东西可变全屏 cancleFullScreen 退出全屏
+        var fullfalg=true;
+        fullscreen.onclick=full;
+        video.ondblclick=full;
+        document.onkeydown=function (e) {
+            if(e.keyCode==27){
+                fullfalg=false;
+                full()
+            }
+        }
+        function full() {
+            if(fullfalg){
+                fullscreen.innerHTML="&#xe625;"
+                container.style.width="100%";
+                container.style.height="100%";
+            }else{
+                fullscreen.innerHTML="&#xe7b5;"
+                container.style.width="600px";
+                container.style.height="400px";
+            }
+            fullfalg=!fullfalg;
+            l=progress.offsetWidth;
+        }
+    </script>
+</html>

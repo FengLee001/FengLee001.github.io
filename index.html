@@ -1,10 +1,423 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-	<meta charset="UTF-8">
-	<title>Document</title>
+<meta charset="utf-8">
+<title>个人主页</title>
+<link rel="stylesheet" href="http://at.alicdn.com/t/font_gwxhox7wow53ik9.css">
+<link rel="stylesheet" href="css/jquery.fullPage.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/general.css">
+<style>
+	.box{
+		width: 100%;
+		height: 60px;
+		background-color: rgb(27, 106, 131);
+		position: 
+		fixed;z-index: 60;
+	}
+	#menu {
+		margin: 0;
+		padding: 0; 
+		position: fixed; 
+		left: 50%;
+		margin-left: -455px; 
+		top: 7px; 
+		list-style-type: none; 
+		z-index: 70;
+	}
+	#menu li { 
+		float: left; 
+		margin:  0 10px 0 0; 
+		font-size: 18px;
+	}
+	#menu li:nth-child(1){
+		margin: -3px 200px 0 0;
+		font-size: 24px;
+		font-weight: 800;
+	}
+	#menu a { 
+		border-radius:10px;
+		float: left; 
+		padding: 10px 20px; 
+		background-color: #fff; 
+		color: #333; 
+		text-decoration: none;
+	}
+	#menu .active a { 
+		color: #fff; 
+		background-color: rgba(33, 42, 63, 0.8);
+	}
+	.section1 { 
+		background: url(img/1.jpg) 50%;
+	}
+	.section2 { 
+		background: url(img/7.jpg) 50%;
+	}
+	.section3 { 
+		background: url(img/2.jpg) 50%;
+	}
+	.section4 { 
+		background: url(img/100.jpg) 50%;
+	}
+	.section5 { 
+		background: url(img/99.jpg) 50%;
+	}
+</style>
+	
+	<script src="js/jquery-1.8.3.min.js"></script>
+	<script src="js/jquery.fullPage.min.js"></script>
+
+	<script>
+	$(function(){
+		$('#dowebok').fullpage({
+			anchors: ['page1', 'page2', 'page3', 'page4','page5'],
+			menu: '#menu',
+			navigation:true,
+			navigationTooltips:['My Homepage','关于我','专业技能','作品展示','联系我'],
+			// afterload:function (an,index) {
+			// 	// if(index=2){
+			// 	// 	$("canvas").load();
+			// 	// }
+   //          if(index==1){ //第二屏
+   //              $(".about_icon1").animate({left:500}); 
+   //              $(".about_icon2").animate({right:500});
+   //          }
+   //      }
+		});
+	});
+	</script>
+
 </head>
 <body>
-	<h1>hello</h1>
+
+	<div class="box">
+	<ul id="menu">
+		<li data-menuanchor="page1" class="active"><a href="#page1">My Homepage</a></li>
+		<li data-menuanchor="page2"><a href="#page2">关 于 我</a></li>
+		<li class="caidan iconfont"><a href="#page2">&#xe7d5;</a></li>
+		<li data-menuanchor="page3"><a href="#page3">专 业 技 能</a></li>
+		<li data-menuanchor="page4"><a href="#page4">作 品 展 示</a></li>
+		<li data-menuanchor="page5"><a href="#page5">联 系 我</a></li>
+	</ul>
+	</div>
+	<div id="dowebok">
+	<div class="section section1">
+		<!-- banner图开始 -->
+		<div class="banner">
+			<div class="backg">
+			<div class="inner">
+				<div class="text-box">
+                   <h1>I am FengLee</h1>
+                   <h2>Full Stack developer</h2>
+				<p class="intro">I'm a Manila based graphic designer, illustratorand webdesigner creating  awesome<br> andeffective visualidentities for companies of all sizes around <br>the globe.Let'sstart scrolling and learn more about me. </p>
+				</div>
+			</div>
+			</div>
+		</div>	
+		<!-- banner图结束 -->
+		<!-- 标题页面开始 -->
+		<div class="some-notes">
+		<div class="neikuan">
+			<div class="title col-lg-12 col-md-12 col-sm-12">
+                <h2> ❤ ----- Motto ----- ❤ </h2>
+            </div>
+            <div class="desc col-lg-12 col-md-12 col-sm-12">
+                <p class="td">God help those who help themselves,Genius is an infinite diligent ability</p>
+                <br>
+                <p class="td2"> 天道酬勤 —— 天才就是无止境刻苦勤奋的能力</p>
+            </div>
+        </div>    
+		</div>
+		<!-- 标题页面结束 -->
+	</div>
+	<div class="section section2">
+		<!-- 关于我开始 -->
+		<div class="about_me neikuan1">
+		<div class="neikuan">
+			<div class="about_title col-lg-12 col-md-12 col-sm-12">关 于 我</div>
+			<div class="about_title about_title1 col-lg-12 col-md-12 col-sm-12">About Me</div>
+			<div class="about_icon about_icon1 col-lg-6 col-md-6 col-sm-12 row">
+				<img src="img/000.jpeg" alt="" class="ziji">	
+			</div>
+			<div class="about_icon about_icon2 col-lg-6 col-md-6 col-sm-12 row">
+				<div class="icon_title"><h4>FengLee</h4></div>
+				<div class="icon_neirong">
+					<ul class="js">
+						<li>NAME :&nbsp; FengLee</li>
+						<li>SEX : &nbsp;&nbsp;Man</li>
+						<li>AGE : &nbsp;Twenty-four</li>
+						<li>HOBBY : &nbsp;Writing Code</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		</div>
+		<!-- 关于我结束 -->
+	</div>
+	<div class="section section3">
+		<!-- 专业技能开始 -->
+		<div class="about_me">
+		<div class="neikuan ">
+			<div class="about_content col-lg-12 col-md-12 col-sm-12">
+				<div class="about_title col-lg-12 col-md-12 col-sm-12">专 业 技 能</div>
+				<div class="about_title about_title1 col-lg-12 col-md-12 col-sm-12">Professional Skills</div>
+				<div class="about_icon col-lg-6 col-md-6 col-sm-12 row">
+					<div class="icon_pic col-lg-2 col-md-2 col-sm-2 ">
+						<canvas width="120px" height="120px" class="hua1"></canvas>
+					</div>	
+					<div class="icon_content col-lg-10 col-md-10 col-sm-10">
+						<div class="icon_title">
+							<h4>JavaScript</h4>
+						</div>
+						<div class="icon_neirong">
+							<p>JavaScript是一种动态类型、弱类型、基于原型的语言，常用来为网页添加各式各样的动态功能,为用户提供更流畅美观的浏览效果。通常JavaScript脚本是通过嵌入在HTML中来实现自身的功能的。</p>
+						</div>
+					</div>
+				</div>
+				<div class="about_icon col-lg-6 col-md-6 col-sm-12 row">
+					<div class="icon_pic col-lg-2 col-md-2 col-sm-2 ">
+						<canvas width="120px" height="120px" class="hua2"></canvas>
+					</div>
+					<div class="icon_content col-lg-10 col-md-10 col-sm-10">
+						<div class="icon_title"><h4>Jquery</h4></div>
+						<div class="icon_neirong"><p>jQuery是一个快速、简洁的JavaScript框架、代码库,jQuery设计的宗旨是“write Less，Do More”。它封装JavaScript常用的功能代码，提供一种简便的JavaScript设计模式，优化HTML文档操作、事件处理、动画设计和Ajax交互。</p></div>
+					</div>
+				</div>
+				<div class="about_icon col-lg-6 col-md-6 col-sm-12 row">
+					<div class="icon_pic col-lg-2 col-md-2 col-sm-2 ">
+						<canvas width="120px" height="120px" class="hua3"></canvas>
+					</div>
+					<div class="icon_content col-lg-10 col-md-10 col-sm-10">
+						<div class="icon_title">
+							<h4>HTML5</h4>
+						</div>
+						<div class="icon_neirong">
+							<p>HTML5赋予网页更好的意义和结构。更加丰富的标签将随着对RDFa的，微数据与微格式等方面的支持，构建对程序、对用户都更有价值的数据驱动的Web。</p>
+						</div>
+					</div>
+				</div>
+				<div class="about_icon col-lg-6 col-md-6 col-sm-12 row">
+					<div class="icon_pic col-lg-2 col-md-2 col-sm-2 ">
+						<canvas width="120px" height="120px" class="hua4"></canvas>
+					</div>
+					<div class="icon_content col-lg-10 col-md-10 col-sm-10">
+						<div class="icon_title">
+							<h4>CSS3</h4>
+						</div>
+						<div class="icon_neirong">
+							<p>CSS3语言开发是朝着模块化发展的。把它分解为一些小的模块，更多新的模块也被加入进来。这些模块包括： 盒子模型、背景和边框 、文字特效 、多栏布局等。</p>
+						</div>
+					</div>
+				</div>
+				<div class="about_icon col-lg-6 col-md-6 col-sm-12 row">
+					<div class="icon_pic col-lg-2 col-md-2 col-sm-2 ">
+						<canvas width="120px" height="120px" class="hua5"></canvas>
+					</div>
+					<div class="icon_content col-lg-10 col-md-10 col-sm-10">
+						<div class="icon_title">
+							<h4>Adobe Photoshop</h4>
+						</div>
+						<div class="icon_neirong">
+							<p>Photoshop主要处理以像素所构成的数字图像。使用其众多的编修与绘图工具，可以有效地进行图片编辑工作。ps有很多功能，在图像、图形、文字、视频、出版等各方面都有涉及。</p>
+						</div>
+					</div>
+				</div>
+				<div class="about_icon col-lg-6 col-md-6 col-sm-12 row">
+					<div class="icon_pic col-lg-2 col-md-2 col-sm-2 ">
+						<canvas width="120px" height="120px" class="hua6"></canvas>
+					</div>
+					<div class="icon_content col-lg-10 col-md-10 col-sm-10">
+						<div class="icon_title">
+							<h4>Adobe Illustrator</h4>
+						</div>
+						<div class="icon_neirong">
+							<p>Adobe illustrator是一种应用于出版、多媒体和在线图像的工业标准矢量插画的软件，广泛应用于印刷出版、海报书籍排版、专业插画、多媒体图像处理和互联网页面的制作等，</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+		<!-- 专业技能结束 -->
+	</div>
+	<div class="section section4">
+		<!-- 我的作品开始 -->
+		<div class="works_show">
+			<div class="neikuan ">
+			<div class="col-lg-12 col-md-12 col-sm-12">
+				<div class="works_title">作 品 展 示</div>
+				<div class="works_title works_title1">Our Works</div>
+			</div>
+			<div class="works_pic col-lg-4 col-md-6 col-sm-12">
+					<a href="###">
+						<h3>网 站 类</h3>
+						<div class="picture">
+							<div class="mask mask1">
+								<a href="net/jd/index.html"><p>1 . 京东官网</p></a>
+								<a href="net/tm/index.html"><p>2 . 天猫官网</p></a>
+								<a href="net/xm/index.html"><p>3 . 小米官网</p></a>
+								<a href="net/zy/index.html"><p>4 . 中国移动</p></a>
+								<a href="net/yt/index.html"><p>5 . 银泰官网</p></a>
+								<a href="net/sf/index.html"><p>6 . 沙发网</p></a>
+								<a href=""><p>7 . 苹果网</p></a>
+								<a href="net/fk/index.html"><p>8 . 凡客网</p></a>
+								<a href="net/wj/首页/index.html"><p>9 . 红酒网(完整版)</p></a>
+							</div>
+							<div class="border_animation">
+                                <div class="border border_top"></div>
+                                <div class="border border_right"></div>
+                                <div class="border border_bottom"></div>
+                                <div class="border border_left"></div>
+                                <img src="img/01.jpg" alt="" class="tu1">
+                            </div>
+						</div>	
+					</a>
+			</div>
+			<div class="works_pic col-lg-4 col-md-6 col-sm-12">
+					<a href="###">
+						<h3>游 戏 类</h3>
+						<div class="picture">
+							<div class="mask mask2">
+								<a href="game/dazi/index.html"><p>1 . 打字游戏</p></a>
+								<a href="game/saolei/saolei.html"><p>2 . 扫雷</p></a>
+								<a href="game/snake/index.html"><p>3 . 贪吃蛇</p></a>
+								<a href="game/chidoudou/chidoudou.html"><p>4 . 吃豆豆</p></a>
+							</div>
+							<div class="border_animation">
+                                <div class="border border_top"></div>
+                                <div class="border border_right"></div>
+                                <div class="border border_bottom"></div>
+                                <div class="border border_left"></div>
+                               <img src="img/03.jpg" alt="" class="tu2">
+                            </div>
+						</div>	
+					</a>
+			</div>
+			<div class="works_pic col-lg-4 col-md-6 col-sm-12">
+					<a href="###">
+						<h3>特 效 类</h3>
+						<div class="picture">
+							<div class="mask mask3">
+								<a href="texiao/huaban.html"><p>1 . 绘图板</p></a>
+								<a href="texiao/todoList.html"><p>2 . todoList</p></a>
+								<a href="texiao/lz.html"><p>3 . 粒子动画</p></a>
+								<a href="texiao/14.biao.html"><p>4 . 时钟</p></a>
+								<a href="texiao/daojishi/djs.html"><p>5 . 倒计时</p></a>
+							</div>
+							<div class="border_animation">
+                                <div class="border border_top"></div>
+                                <div class="border border_right"></div>
+                                <div class="border border_bottom"></div>
+                                <div class="border border_left"></div>
+                                <img src="img/02.jpg" alt="" class="tu3">
+                            </div>
+						</div>	
+					</a>
+			</div>
+			<div class="works_pic col-lg-4 col-md-6 col-sm-12">
+					<a href="###">
+						<h3>视 频 类</h3>
+						<div class="picture">
+							<div class="mask mask4">
+								<a href="video/shipin.html"><p>1 . 视频播放</p></a>
+							</div>
+							<div class="border_animation">
+                                <div class="border border_top"></div>
+                                <div class="border border_right"></div>
+                                <div class="border border_bottom"></div>
+                                <div class="border border_left"></div>
+                                <img src="img/04.jpg" alt="" class="tu4">
+                            </div>
+						</div>	
+					</a>
+			</div>
+			<div class="works_pic col-lg-4 col-md-6 col-sm-12">
+					<a href="###">
+						<h3>阿 贾 克 斯</h3>
+						<div class="picture">
+							<div class="mask mask5">
+								<a href="ajax/tianqi/ajax.html"><p>1 . 天气预报</p></a>
+							</div>
+							<div class="border_animation">
+                                <div class="border border_top"></div>
+                                <div class="border border_right"></div>
+                                <div class="border border_bottom"></div>
+                                <div class="border border_left"></div>
+                                <img src="img/05.jpg" alt="" class="tu5">
+                            </div>
+						</div>
+					</a>
+			</div>
+			<div class="works_pic col-lg-4 col-md-6 col-sm-12">
+				<a href="###">
+					<h3>3D 类</h3>
+					<div class="picture">
+						<div class="mask mask6">
+							<a href="3D/3D.html"><p>1 . 3D空间</p></a>
+						</div>
+						<div class="border_animation">
+                               <div class="border border_top"></div>
+                               <div class="border border_right"></div>
+                               <div class="border border_bottom"></div>
+                               <div class="border border_left"></div>
+                               <img src="img/06.jpg" alt="" class="tu6">
+                           </div>
+					</div>		
+				</a>
+			</div>
+			</div>
+		</div>
+		<!-- 我的作品结束 -->
+	</div>
+	<div class="section section5">
+		<!-- 联系我开始 -->
+		<div class="contact">
+		<div class="neikuan">
+			<div class="col-lg-12 col-md-12 col-sm-12">
+				<div class="contact_title">联 系 我</div>
+				<div class="contact_title contact_title1">Cantact Me</div>
+				<div class="col-xs-12 col-sm-6 col-md-3">
+	                <div class="counter-item">
+	                    <h5>QQ : 554993389</h5>                               
+	                </div>
+	            </div>
+	            <div class="col-xs-12 col-sm-6 col-md-3">
+	                <div class="counter-item">
+	                    <h5>Phone : 18335182621</h5>                               
+	                </div>
+	            </div>  
+	            <div class="col-xs-12 col-sm-6 col-md-3">
+	                <div class="counter-item">
+	                    <h5>Weibo : FengLee</h5>                               
+	                </div>
+	            </div>  
+	            <div class="col-xs-12 col-sm-6 col-md-3">
+	                <div class="counter-item">
+	                    <h5>Email : 554993389@qq.com</h5>                             
+	                </div>
+	            </div>  
+			</div>
+		</div>
+		</div>
+		<!-- 联系我结束 -->
+		<!-- 底部开始 -->
+		<div class="footer">
+			<div class="footer_img">
+				<div class="mingyan">
+					<p>天道酬勤，勤能补拙。地道酬实，实能不弱。人道酬德，德能补寡</p>
+					<p>Thanks for looking at my personal homepage</p>
+				</div>
+			</div>
+		</div>
+		<!--底部结束  -->
+	</div>
+	</div>
+	
+	<a href="http://www.dowebok.com/" style="display: none;">dowebok</a>
+	<a href="http://www.dowebok.com/77.html" style="display: none;">jQuery全屏滚动插件fullPage.js</a>
+	
+	<script src="js/geren.js"></script>
+
 </body>
 </html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            font-family: tahoma, verdana, 微软雅黑;
+        }
+        .weather{
+            width: 1000px;
+            height: 200px;
+            border: 1px  solid#000;
+            margin: 0 auto;
+            /*合并表格边框*/
+            border-collapse: collapse;
+            font-size: 20px;
+            text-align: center;
+            line-height: 40px;
+        }
+        .weather table thead{
+            width: 1000px;
+            height: 50px;
+        }
+        .weather td,.weather th {
+            width: 200px;
+            height: 50px;
+            border: 1px solid #000;
+        }
+        .weather th,.life th{
+            background: #ff6700;
+            color: #fff;
+        }
+        .weather tr,.life tr{
+            width: 1000px;
+            height: 50px;
+        }
+        .change{
+            width: 1000px;
+            margin: 0 auto;
+        }
+        .area{
+            display: none;
+
+        }
+        label{
+            display: block;
+        }
+        h1{
+            margin: 0 auto;
+            height: auto;
+            text-align: center;
+        }
+        .life{
+            width: 1000px;
+            height: 450px;
+            border: 1px  solid#000;
+            margin: 0 auto;
+            /*合并表格边框*/
+            border-collapse: collapse;
+            font-size: 20px;
+            text-align: center;
+            /*line-height: 40px;*/
+        }
+        .life td,.life th{
+            width: 200px;
+            height: 50px;
+            border: 1px solid #000;
+        }
+        .life td:nth-child(3){
+            width: 600px;
+        }
+    </style>
+</head>
+<body>
+<h1><span class="cityname"></span>市天气预报</h1>
+<div class="change">
+    <label>
+        <input type="button" value="切换城市" class="toggle">
+    </label>
+    <label class="area">省：
+        <select class="province">
+            <option>请选择省份</option>
+        </select>
+        <select class="city">
+            <option>请选择市</option>
+        </select>
+    </label>
+</div>
+
+<table class="weather">
+    <thead>
+    <tr>
+        <th>时 间</th>
+        <th>日 期</th>
+        <th>天 气</th>
+        <th>温 度</th>
+        <th>风 力</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+    <tfoot>
+
+    </tfoot>
+</table>
+<h1><span class="cityname"></span>市生活指数</h1>
+<table class="life">
+    <thead>
+    <tr>
+        <th>指&nbsp;数</th>
+        <th>适宜程度</th>
+        <th>建&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;议</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr id="air">
+        <td>空气指数</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr id="comf">
+        <td>舒适度</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr id="cw">
+        <td>洗车指南</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr id="drsg">
+        <td>穿衣指数</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr id="flu">
+        <td>流感指数</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr id="sport">
+        <td>运动指数</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr id="trav">
+        <td>旅游指数</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr id="uv">
+        <td>紫外线</td>
+        <td></td>
+        <td></td>
+    </tr>
+    </tbody>
+</table>
+<script src="jQuery.js"></script>
+<script>
+// 和风天气获取
+// https://free-api.heweather.com/v5/
+//https://free-api.heweather.com/v5/weather?city=yourcity&key=yourkey
+//个人认证key: f83f293eedd8440aad69e3e0346ae412
+
+// 新浪网获取城市信息
+// http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js
+
+//$.get  $.getScript  $.getJSON  都可用$.ajax() 注意type
+    $(function () {
+//        $.ajax({
+//            url:"http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js",
+//            dataType:"script",
+//            success : function  (r) {
+//                console.log(remote_ip_info)
+//            }
+//        })
+
+
+           function update(city) {
+               $(".cityname").html(city);
+               $(".weather tbody").empty();
+               $.get("https://free-api.heweather.com/v5/weather",{city:city,key:"f83f293eedd8440aad69e3e0346ae412"},function (r) {
+                   var arr=["今天","明天","后天"]
+                   console.log(r)
+                   $.each(r.HeWeather5[0].daily_forecast,function (index,value) {
+                       $("<tr>").html(function () {
+                           return "<td>"+arr[index]+"</td><td>"+value.date+"</td><td>"+value.cond.txt_d+"</td><td>"+value.tmp.min+"℃~"+value.tmp.max+"℃"+"</td><td>"+value.wind.dir+"/"+value.wind.sc+"</td>"
+                       }).appendTo(".weather tbody");
+                   })
+                   $.each(r.HeWeather5[0].suggestion,function (i,v) {
+                       $("#"+i).find("td").eq(1).text(v.brf).end().eq(2).text(v.txt)
+                   })
+               })
+           }
+        //获取城市信息
+        $.getScript("http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js",function () {
+            var city=remote_ip_info.city;
+            update(city);
+        })
+        //点击带来城市信息
+        $(".toggle").click(function () {
+            $(".area").slideToggle();//内容的显示与隐藏
+        }).one("click",function () { //触发一次  点完就会注销
+            $.getJSON("citys.json",function (r) { //getJSON不能远程获取  下载到本地citys.json
+//                console.log(r)
+                var province={}; //所有省作为一个对象
+                $.each(r,function (index,value) {
+                    if(!province[value.provinceZh]){  //如果没有被遍历到
+                        province[value.provinceZh]=[];
+                    }
+                    province[value.provinceZh].push(value.cityZh); //利用province的value
+                })
+                //联动
+                $.each(province,function (i,v) {
+                    $("<option>").text(i).val(i).appendTo(".province");  //text用于设置元素内容的文本   val()获得匹配元素的当前值。
+                })
+
+                $(".province").change(function () {
+                    var val=$(this).val();//省的名字
+                    $(".city").html("<option value=''>请选择市</option>>")
+                    var citys=province[val];
+                    $.each(citys,function (i,v) {
+                        $("<option>").text(v).val(v).appendTo(".city"); //再次选择省份 市..
+                    })
+                })
+                $(".city").change(function () {
+                    if($(this).val()!=""){
+                        update($(this).val())
+                    }
+                })
+            })
+        })
+
+    })
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            box-sizing: border-box;
+        }
+        canvas{
+            background: #ccc;
+            display: block;
+            margin: 0 auto;
+        }
+        #controls{
+            width: 200px;
+            height: 100%;
+            color: #fff;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: linear-gradient(60deg, #66d9ef 0, #5fcd8e 50%, #a1bc1f 0, #26a33d 100%);
+        }
+        #controls section{
+            height:30px;
+            margin:20px 20px;
+        }
+        lable{
+            width:50%;
+            float: left;
+            height:30px;
+            color: #fff;
+            line-height:30px;
+            text-align: center;
+        }
+        section lable,input:not[type=button]{
+            /*input:not[button]排除属于button的 input样式 本例结合下面input样式float:none*/
+            width:50%;
+            height:30px;
+            float: left;
+        }
+        input[type=button]{
+            width: 150px;
+            height: 30px;
+            background: #fd4889;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            display: block;
+            margin: 15px auto;
+            /*float: none;*/
+        }
+    </style>
+</head>
+<body>
+<canvas width="500px" height="500px"></canvas>
+<div id="controls">
+    <section>
+        <lable for="shape">选择形状</lable>
+        <select id="shape">
+            <option value="rect">矩形</option>
+            <option value="line">直线</option>
+            <option value="circlein">内切圆</option>
+            <option value="circleout">外接圆</option>
+            <option value="circlecenter">中心圆</option>
+            <option value="poly">多边形</option>
+            <option value="pen">铅笔</option>
+            <option value="eraser">橡皮擦</option>
+        </select>
+    </section>
+    <section>
+        <lable for="color">选择颜色</lable>
+        <input type="color" id="color">
+    </section>
+    <section>
+        <lable for="width">选择线宽</lable>
+        <input type="number" id="width" value="2" step="2" min="2" max="20">
+    </section>
+    <section>
+        <lable for="style">选择方式</lable>
+        <select id="style">
+            <option value="stroke">描边</option>
+            <option value="fill">填充</option>
+        </select>
+    </section>
+    <section>
+        <lable for="side">选择边数</lable>
+        <input type="number" id="side" value="3" min="3" max="12">
+    </section>
+    <input type="button" value="撤销" id="redo">
+    <input type="button" value="保存" id="save">
+    <input type="button" value="清空" id="clear">
+</div>
+<script src="draw.js"></script>
+<script>
+    var canvas=document.querySelector("canvas");
+    var cobj=canvas.getContext("2d");
+    var shape=document.querySelector("#shape");
+    var color=document.querySelector("#color");
+    var width=document.querySelector("#width");
+    var style=document.querySelector("#style");
+    var side=document.querySelector("#side");
+    var redo=document.querySelector("#redo");
+    var save=document.querySelector("#save");
+    var clear=document.querySelector("#clear");
+
+    var s="rect";//shape
+    shape.onchange=function () {
+        s=this.value;
+    };
+    var c="#000";//color
+    color.onchange=function () {
+        c=this.value;
+    };
+    var w="2";//width
+    width.onchange=function () {
+        w=this.value;
+    };
+    var st="stroke";//style
+    style.onchange=function () {
+        st=this.value;
+    };
+    var si="3";
+    side.onchange=function () {
+        si=this.value;
+    };
+
+
+    var data=[];
+    canvas.onmousedown=function (e) {
+        var ox=e.offsetX;
+        var oy=e.offsetY;
+        var draw=new Draw(cobj,{color:c,width:w,style:st});//全局变量要在实例化对象时作为参数传进去
+        if(s=="pen"){
+            cobj.beginPath();
+            cobj.moveTo(ox,oy)
+        }
+        canvas.onmousemove=function (e) {
+            var mx=e.offsetX;
+            var my=e.offsetY;
+            if(s!=="eraser"){
+                cobj.clearRect(0,0,500,500); //画之前要清空
+                if(data.length!=0){
+                    cobj.putImageData(data[data.length-1],0,0)  //上次历史
+                }
+            }
+            draw[s](ox,oy,mx,my,si);
+        };
+        document.onmouseup=function () {
+            data.push(cobj.getImageData(0,0,500,500));
+            canvas.onmousemove=null;
+            document.onmouseup=null;
+        }
+    };
+
+    //撤销
+    redo.onclick=function () {
+        if(data.length==0){
+            alert("没了")
+            return;
+        }
+        cobj.clearRect(0,0,500,500);
+        data.pop();
+        if(data.length==0){
+            return;
+        }
+        cobj.putImageData(data[data.length-1],0,0)
+    }
+
+    //保存
+    save.onclick=function () {
+        var r=canvas.toDataURL()
+        //方法1
+        location.href=r;
+        //方法2
+//        location.assign(r);
+    }
+
+    //清空
+    clear.onclick=function () {
+        cobj.clearRect(0,0,500,500);
+        data=[];
+    }
+
+
+
+
+
+</script>
+</body>
+</html>

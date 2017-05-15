@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>倒计时</title>
+	<style>
+	.k{
+		width: 700px;
+		height: 500px;
+		padding-top: 100px;
+		border-radius: 80%;
+		background-image: url(1.jpg);
+		background-size: cover;
+		margin: 0 auto;
+		position: relative;
+	}
+	.k img{
+		position: absolute;
+		top: 44px;
+		left: 210px;
+		width: 160px;
+		height: 160px;
+		
+	}
+	h3{
+		text-decoration: none;
+		text-align: center;
+		font-size: 60px;
+		font-family: 华文彩云;
+		letter-spacing: 10px;
+		color:purple;
+	}
+	.now,.djs{
+		text-align: center;
+		font-size: 25px;
+		font-family: 幼圆;
+		font-weight: 400;
+		/*color: #fff;*/
+		color: #70bed4;
+		
+	}
+	.num{
+		color: #fff; 
+		/*color: #70bed4;*/
+		margin-right: 20px;
+		font-weight: bold;
+		font-size: 50px;
+		font-family: 苹方;
+	}
+	.now{
+		margin-top: -15px;
+	}
+	.djs{
+		margin-top: 20px;
+	}
+	</style>
+</head>
+<body>
+	<div class="k">
+		<img src="7199e900jw1efvbuqcdqsj20cw0abaaw-(1).png" alt="">
+		<h3>五一倒计时</h3>
+		<div class="now">
+			<span class="num">0</span><span>时</span>
+			<span class="num">0</span><span>分</span>
+			<span class="num">0</span><span>秒</span>
+		</div>
+		<div class="djs">
+			<span class="num">0</span><span>天</span>
+			<span class="num">0</span><span>时</span>
+			<span class="num">0</span><span>分</span>
+			<span class="num">0</span><span>秒</span>
+		</div>
+	</div>
+
+
+
+	<script src="function.js"></script>
+
+
+	<script>
+	$(function(){
+
+		const nowh=$(".now .num:nth-child(1)")[0];
+		const nowm=$(".now .num:nth-child(3)")[0];
+		const nows=$(".now .num:nth-child(5)")[0];
+
+		const dh=$(".djs .num:nth-child(3)")[0];
+		const dm=$(".djs .num:nth-child(5)")[0];
+		const ds=$(".djs .num:nth-child(7)")[0];
+		const dd=$(".djs .num:nth-child(1)")[0];
+
+
+		//用面向对象 构造并实例化现在时间（实时）
+		class time{
+			constructor(h,m,s){
+				this.h=h;   //this.属性名=属性值
+				this.m=m;
+				this.s=s;
+			}
+
+			play(){  //接口
+				
+				this.writes(this.getTimes());  //获取到的时间写道页面中
+				this.update();
+			}
+
+			getTimes(){
+				let nowdate=new Date();      //创建日期对象
+				let h=nowdate.getHours();
+				let m=nowdate.getMinutes();
+				let s=nowdate. getSeconds();
+
+				h=h<10?('0'+h):h
+				m=m<10?('0'+m):m
+				s=s<10?('0'+s):s
+
+				let map=new Map();	
+				map.set("h",h);  //("键名"，键值) 一个名字一个数字
+				map.set("m",m);
+				map.set("s",s);
+				return map;
+			}
+			writes(map){
+
+				this.h.innerHTML=map.get("h");
+				this.m.innerHTML=map.get("m");
+				this.s.innerHTML=map.get("s");
+
+			}
+
+			update(){
+				let that=this;
+				setInterval(function(){					
+					that.writes(that.getTimes());				
+				},1000)
+			}
+		}
+
+		//实例化
+		let nowtime=new time(nowh,nowm,nows);
+		nowtime.play();
+		// console.log(nowtime.getTimes())；
+
+
+
+
+		// 2、用面向对象 构造并实例化倒计时
+		class daojishi extends time{   //可继承前面与time相同属性
+			constructor(h,m,s,t,date){
+				super(h,m,s);   //相当于给父元素初始化
+				this.t=t;
+				this.date=date;
+			}
+			play(){
+				// this.getChatTime()
+				let map=this.getChatTime()
+				super.writes(map);//利用父元素调用write(map)--super.writes(map)  仅仅是一个函数而已
+				this.writes(map);  //自己的write(map)
+				this.fwrites=super.writes;
+				this.update();
+				
+			}
+			getChatTime(){
+				let now=new Date();
+				let chatime=this.date.getTime()-now.getTime();
+				chatime/=1000;
+				let t=parseInt(chatime/60/60/24);
+				let h=parseInt(chatime/60/60%24);
+				let m=parseInt(chatime/60%60);
+				let s=parseInt(chatime%60);
+
+				h=h<10?('0'+h):h;
+				m=m<10?('0'+m):m;
+				s=s<10?('0'+s):s;
+				t=t<10?('0'+t):t;
+
+				let map=new Map()
+				map.set("t",t);  //("键名"，键值) 一个名字一个数字
+				map.set("h",h);
+				map.set("m",m);
+				map.set("s",s);
+				return map;
+			}
+
+			writes(map){
+
+				//
+				// this.h.innerHTML=map.get("h");
+				// this.m.innerHTML=map.get("m");
+				// this.s.innerHTML=map.get("s");
+				//
+
+				this.t.innerHTML=map.get("t");  //单独写天的值
+			}
+			update(){
+				let that=this;
+				let t=setInterval(function(){
+					
+					let map=that.getChatTime()
+					that.fwrites(map);
+					that.writes(map);
+
+					// that.writes(that.getChatTime());
+
+				},1000)
+
+				// if(that.t=="0"&&that.h=="0"&&that.m=="0"&&that.s=="0"){
+				// 	clearInterval(t);
+				// 	alert("倒计时结束");
+				// }
+			}
+		} 
+
+		//实例化
+		let wuyi=new Date(2018,4,1,0,0,0);      //创建日期对象   4指5月
+		let wydjs=new daojishi(dh,dm,ds,dd,wuyi);  //对应构造函数传上面所获取参数
+		// console.log(wydjs.date);   //可输出五个实例化后对应的参数值
+		wydjs.play();
+
+
+
+	})
+	</script>
+	
+</body>
+</html>

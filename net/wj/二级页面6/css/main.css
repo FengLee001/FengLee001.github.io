@@ -1,0 +1,616 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Microsoft YaHei';
+    font-size: 12px;
+    color: #333333;
+    font: 12px/1.5 'Microsoft YaHei';
+    background: #f8f8f8;
+}
+.neikuan{
+    width: 1200px;
+    margin: 0 auto;
+}
+.clear{
+    content: "";
+    width: 0;
+    height: 0;
+    display: block;
+    clear: both;
+}
+/*头部开始*/
+header{
+	width: 100%;
+    height: 38px;
+    border-bottom: 1px solid #ccc;
+    background: #fff;
+    color: #999;
+}
+header .mn{
+	height: 14px;
+    line-height: 14px;
+    font-size: 12px;
+    padding-top: 12px;
+    z-index: 50;
+    position: relative;
+}
+header .mn .app{
+	float: left;
+    display: inline;
+    line-height: 22px;
+    margin-right: 15px;
+}
+header .mn .app span{
+	padding-right: 20px;
+    color: #000;
+    float: left;
+}
+header .mn .app a{
+	color: #999;
+	margin-right: 3px;
+	float: left;
+}
+header .mn a:hover{
+	color: #c4166e;
+}
+header .mn .menu{
+	float: right;
+    display: inline;
+    border-right: 1px dotted #cccccc;
+    padding: 0 10px;
+    position: relative;
+}
+header .mn .menu em{
+	display: block;
+    float: left;
+    position: relative;
+    z-index: 3;
+}
+header .mn .menu a{
+	color: #999;
+	font-weight: normal;
+    font-style: normal;
+}
+.menu i{
+	position: relative;
+    z-index: 3;
+    height: 6px;
+    width: 10px;
+    float: left;
+    display: block;
+    margin: 5px 0 0 5px;
+    background: url(../img/ico-2015-12.png) -10px -6px no-repeat;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    font-weight: normal;
+    font-style: normal;
+}
+.wdxiala{
+	position: absolute;
+    top: -23px;
+    left: -1px;
+    border: 1px solid #ccc;
+    padding: 44px 10px 10px 16px;
+    background: #fff;
+    z-index: 2;
+    width: 60px;
+    line-height: 20px;
+    overflow: hidden;
+    height: 0px;
+    opacity: 0;
+    display: none;
+    transition: all .5s;
+    -webkit-transition: all .5s;
+    opacity: 1;
+    height: auto;
+}
+.wdxiala li a:hover{
+	color: #a21459;
+}
+.menu:hover .wdxiala{
+	display: block;
+}
+.menu:hover i{
+	background: url(../img/ico-2015-12.png) -10px 0px no-repeat;
+}
+.menu em a:hover{
+	color: #a21459;
+}
+/*头部结束*/
+/*头部导航开始*/
+.topNav{
+	background: #fff;
+    width: 100%;
+}
+.Nav{
+	padding: 20px 0;
+    background: #fff;
+    height: 90px;
+    width: 100%;
+}
+.logo{
+	height: 90px;
+    width: 160px;
+    background: url(../img/leico.png) no-repeat;
+    float: left;
+    display: inline;
+    cursor: pointer;
+}
+.gouwu{
+	position: relative;
+    float: right;
+    display: inline;
+    cursor: pointer;
+    background: #fff;
+    margin-top: 20px;
+    z-index: 40;
+}
+.gouwubox{
+	border: 1px solid #a40c59;
+    border-radius: 2px;
+    height: 28px;
+    line-height: 28px;
+    overflow: hidden;
+    color: #fff;
+}
+.gouwuList{
+	border: 1px solid #ddd;
+    position: absolute;
+    top: 28px;
+    right: 0px;
+    width: 400px;
+    height: 106px;
+    background: #fff;
+    display: none;
+    z-index: 0;
+    font-size: 12px;
+    text-align: center;
+    line-height: 106px;
+}
+.dang{
+	width: 156px;
+	height: 3px;
+	background: #fff;
+	position: absolute;
+	top: -1px;
+	right: 0;
+	height: 3px;
+}
+.gouwu:hover .gouwubox{
+	border: 1px solid #ddd;
+}
+.gouwu:hover .car-tw{
+	background: #fff url(../img/ico-2015-12.png) 10px -75px no-repeat;
+    width: 70px;
+	color: #333;
+}
+.gouwu:hover i{
+	background: url(../img/ico-2015-12.png) -20px 0px no-repeat;
+}
+.gouwu:hover .gouwuList{
+	display: block;
+}
+.car-tw{
+	float: left;
+    display: inline;
+    background: #a40c59 url(../img/ico-2015-12.png) 10px -47px no-repeat;
+    width: 70px;
+    padding-left: 40px;
+}
+.car-numb{
+	float: left;
+    display: inline;
+    margin-left: 12px;
+    color: #a40e59;
+}
+.gouwu i{
+	height: 6px;
+    width: 10px;
+    float: left;
+    display: block;
+    margin: 12px 10px 0 5px;
+    background: url(../img/ico-2015-12.png) -20px -6px no-repeat;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    font-weight: normal;
+    font-style: normal;
+}
+.hd-search{
+	position: relative;
+    float: left;
+    display: inline;
+    margin: 20px 0 0 200px;
+    z-index: 40;
+}
+.searchClass{
+	width: 530px;
+	height: 53px;
+	margin: 0 auto;
+}
+.search-text{
+	float: left;
+    border: 1px solid #a40c59;
+    display: inline;
+    height: 28px;
+    line-height: 28px;
+    padding: 0 80px 0 10px;
+    width: 439px;
+    color: #666;
+    outline: none;
+}
+.search-btn{
+	display: block;
+    float: left;
+    height: 30px;
+    width: 60px;
+    background: url(../img/btn-search.png) 0 0 no-repeat;
+    margin-left: -61px;
+}
+.search_tips{
+	overflow: hidden;
+    width: 530px;
+    padding-top: 5px;
+}
+.search_tips a{
+	display: block;
+    float: left;
+    margin-right: 10px;
+    color: #999;
+}
+/*头部导航结束*/
+/*banner开始*/
+.bannerTop{
+	background: #fff;
+    width: 100%;
+    border-bottom: 1px solid #a21459;
+}
+.topmeau{
+	position: relative;
+    width: 1200px;
+    margin: 0 auto;
+    border-bottom: 0px solid #aaa;
+    height: 30px;
+    line-height: 30px;
+    font-size: 18px;
+    background: #fff;
+    z-index: 30;
+}
+.topmeau li{
+	display: inline;
+    float: left;
+    height: 30px;
+    border-bottom: 0px solid #aaa;
+    margin-bottom: -4px;
+    position: relative;
+}
+.topmeau li a:hover{
+    color: #a21459;
+}
+.topmeau a{
+	display: block;
+    margin: 0 35px 0 0;
+    font-size: 14px;
+    color: #444;
+}
+.topmeau_z{
+	background: #222 url(../img/ico-2015-12.png) 130px -573px no-repeat;
+    width: 166px;
+    margin-right: 25px;
+}
+.topmeau_z .allsp{
+	color: #fff;
+    background: url(../img/ico-2015-12.png) 3px -604px no-repeat;
+    line-height: 28px;
+    text-indent: 35px;
+}
+.bannerNav{
+	position: absolute;
+    top: 30px;
+    left: 0px;
+    z-index: 2;
+    background: #f8f8f8;
+    height: 400px;
+    width: 164px;
+    border-left: 1px solid #e5e5e5;
+    border-right: 1px solid #e5e5e5;
+    border-top: 1px solid #a21459;
+    display: none;
+}
+.topmeau_z:hover .bannerNav{
+    display: block;
+}
+.bannerNavbox{
+	width: 160px;
+    padding: 0px;
+    overflow: hidden;
+    height: 50px;
+    margin-left: 4px;
+}
+.bannerNavbox h2{
+    font-size: 14px;
+    line-height: 49px;
+    width: 125px;
+    padding-left: 50px;
+    height: 49px;
+    font-weight: normal;
+    border-bottom: 1px solid #e4e4e4;
+    background-repeat: no-repeat;
+    background-position: 0 center;
+}
+.bannerNavbox h2 a{
+	color: #414141;
+}
+.bannerNavbox:hover h2 a{
+	color: #fff;
+}
+.bannerNavbox .iterm01{
+	background-image: url(../img/sorticon_xuan.png)
+}
+.bannerNavbox:hover .iterm01{
+	background-image: url(../img/sorticon_xuan_01.png)
+}
+.bannerNavbox .iterm02{
+	background-image: url(../img/sorticon_putao.png)
+}
+.bannerNavbox:hover .iterm02{
+	background-image: url(../img/sorticon_putao_01.png)
+}
+.bannerNavbox .iterm03{
+	background-image: url(../img/sorticon_yang.png)
+}
+.bannerNavbox:hover .iterm03{
+	background-image: url(../img/sorticon_yang_01.png)
+}
+.bannerNavbox .iterm04{
+	background-image: url(../img/sorticon_beer.png)
+}
+.bannerNavbox:hover .iterm04{
+	background-image: url(../img/sorticon_beer_01.png)
+}
+.bannerNavbox .iterm05{
+	background-image: url(../img/sorticon_round.png)
+}
+.bannerNavbox:hover .iterm05{
+	background-image: url(../img/sorticon_round_01.png)
+}
+.bannerNavbox .iterm06{
+	background-image: url(../img/sorticon_enm.png)
+}
+.bannerNavbox:hover .iterm06{
+	background-image: url(../img/sorticon_enm_01.png)
+}
+.bannerNavbox .iterm07{
+	background-image: url(../img/sorticon_rupin.png)
+}
+.bannerNavbox:hover .iterm07{
+	background-image: url(../img/sorticon_rupin_01.png)
+}
+.bannerNavList{
+	width: 690px;
+    height: 390px;
+    left: 165px;
+    padding-top: 10px;
+    display: none;
+    background: #fff;
+    border-right: 10px solid rgba(146,146,146,0.2);
+    border-bottom: 1px solid rgba(146,146,146,0.2);
+    position: absolute;
+    top:0px;
+    z-index: 2;
+    border-top: 1px solid #a21459;
+}
+.bannerNavList .listyou{
+	float: right;
+    width: 280px;
+    height: 350px;
+}
+.bannerNavList .listzuo{
+	width: 280px;
+	height: 100%;
+	line-height: 20px;
+    margin-left: 30px;
+}
+.listzuo_S b{
+	border-bottom: 1px solid #E4E4E4;
+    padding-top: 10px;
+    font-weight: bold;
+    display: block;
+    color: #a40c59;
+    font-size: 12px;
+}
+.listzuo_S a{
+	color: #666666;
+    font-size: 12px;
+    display: inline-block;
+    padding-right: 5px;
+}
+.bannerNavbox:hover .bannerNavList{
+	display: block;
+}
+.topmeau li>a.active{
+	border-bottom: 3px solid #a21459;
+    height: 27px;
+}
+.topmeau li img{
+	position: absolute;
+    right: 13px;
+    top: 0px;
+}
+.banner{
+	width: 100%;
+    height: 400px;
+    position: relative;
+}
+.bannerBox{
+	width: 100%;
+    height: 400px;
+    position: relative;
+}
+.bannerTu{
+	height: 400px;
+	width: 100%;
+	position: absolute;
+	left: 0;
+	top:0;
+	background: url(../img/1483511430500384.jpg) center top no-repeat;
+}
+/*banner结束*/
+.bannertiao{
+    width: 100%;
+    height: 49px;
+    background: url(../img/1483511490297671.jpg) center 0 repeat-y;
+}
+.yys{
+    height: 270px;
+    width: 100%;
+    display: flex;
+    justify-content:space-between;
+}
+.hh{
+    margin-top: -5px;
+}
+
+/*底部开始*/
+footer{
+    margin-top: 30px;
+	border-top: 1px solid #ccc;
+    width: 100%;
+    background: #fff;
+    font-family: 'Microsoft YaHei';
+    overflow: hidden;
+}
+.slogen{
+	padding: 30px 0;
+    overflow: hidden;
+    width: 1120px;
+    margin: 0 auto;
+    padding-left: 60px;
+}
+.slogen dl{
+	float: left;
+    display: inline;
+    width: 280px;
+    overflow: hidden;
+    margin-top: 22px;
+}
+.slogen dl dt{
+	float: left;
+    display: inline;
+    height: 50px;
+    width: 50px;
+    background: url(../img/ico-2015-12s.png) 0 0 no-repeat;
+    margin-right: 10px;
+}
+.s1{
+    background-position: 0 -55px;
+}
+.s2{
+    background-position: 0 -110px;
+}
+.s3{
+    background-position: 0 -165px;
+}
+.slogen dl dd{
+	float: left;
+    display: inline;
+    font-size: 14px;
+    margin-top: 6px;
+}
+.slogen dl dd b{
+	font-size: 16px;
+    padding-top: 10px;
+    display: block;
+    color: #666;
+    font-weight: bold;
+}
+.footZ{
+	width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-top: 1px dashed #ccc;
+    padding: 30px 0;
+}
+.footZ dl{
+	float: left;
+    display: inline;
+    width: 145px;
+    font-size: 12px;
+    line-height: 24px;
+}
+.footZ dl dt{
+	font-size: 18px;
+    padding-bottom: 10px;
+}
+.footZ dl dd a{
+	color: #333;
+}
+.footZ dl:last-of-type{
+	width: 180px;
+}
+.ewm1{
+	float: left;
+    display: inline;
+    margin-left: 10px;
+    width: 80px;
+    text-align: center;
+}
+.ewm1 img{
+	height: 80px;
+    width: 80px;
+}
+.footX{
+	background: #000;
+    width: 100%;
+    color: #fff;
+}
+.footXX{
+	line-height: 20px;
+    font-size: 12px;
+    margin: 0 auto;
+    padding: 20px 0;
+    color: #fff;
+    width: 1200px;
+    overflow: hidden;
+}
+.footX_Z{
+	width: 970px;
+    float: left;
+}
+.footX_Z a{
+	color: #fff;
+	float: left;
+}
+.footX_Z span{
+	margin: 0 4px;
+	float: left;
+}
+.footX_Y{
+	width: 230px;
+    float: left;
+    text-align: right;
+    background: url(../img/ico-2015-12.png) 0 -646px no-repeat;
+    line-height: 25px;
+}
+/*底部结束*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

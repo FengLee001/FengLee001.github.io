@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>待办事项</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        html,body{
+            margin: 0;
+            height: 100%;
+            font-family: 微软雅黑;
+        }
+        body{
+            display: flex;
+            flex-direction: column;
+        }
+        .title{
+            width: 100%;
+            height: 100px;
+            line-height: 100px;
+            font-size: 50px;
+            letter-spacing: 5px;
+            font-family: 华文行楷;
+            color: #fff;
+            padding-left: 30px;
+            background: #baba5d;
+        }
+        .inputarea{
+            width: 100%;
+            height: 50px;
+        }
+        #text{
+            width: 300px;
+            height: 50px;
+            float: left;
+        }
+        #submit{
+            width: 150px;
+            height: 50px;
+            font-size: 16px;
+            text-align: center;
+            letter-spacing: 10px;
+            float: left;
+            background: #cad6ff;
+            /*border: none;*/
+            cursor: pointer;
+        }
+        .show{
+            width: 100%;
+            background: #38ffd1;
+            /*占据剩余部分*/
+            flex-grow: 1;
+            background-image: url(jishiben.jpg);
+            background-repeat: no-repeat;
+            /*background-size: cover;*/
+        }
+        .plan{
+            width: 50%;
+            height: 100%;
+            overflow: hidden;
+            background: #e8db38;
+            float: left;
+        }
+        .done{
+            width: 50%;
+            height: 100%;
+            overflow: hidden;
+            background: #00a8f6;
+            float: right;
+        }
+        ul li input{
+            float: left;
+            width: 30px;
+            height: 30px;
+        }
+        ul li span{
+            /*float: left;*/
+            width: 300px;
+            height: auto;
+            border: 1px dashed#ccc;
+            line-height: 30px;
+            color: #fff;
+            padding-left: 30px;
+        }
+        ul li time{
+            width: 180px;
+            height: 30px;
+            float: right;
+            text-align: center;
+            line-height: 30px;
+            color: #fff;
+            background: red;
+        }
+        .contenttitle{
+            height: 50px;
+            font-size: 20px;
+            line-height: 50px;
+            width: 50%;
+            float: left;
+            background: #ccc;
+            color: red;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="title">待办事项</div>
+    <div class="inputarea">
+        <input type="text" id="text">
+        <input type="button" id="submit" value="提交">
+    </div>
+    <div class="show">
+        <div class="contenttitle">未完成</div>
+        <div class="contenttitle">已完成</div>
+        <ul class="plan">
+            <li><input type="checkbox"><span>515465646</span><time>2017/5/3 15:24</time></li>
+        </ul>
+        <ul class="done">
+            <li><input type="submit" value="X"><span>515465646</span><time>2017/5/3 15:24</time></li>
+        </ul>
+    </div>
+</body>
+<script>
+    var text=document.querySelector("#text");
+    var submit=document.querySelector("#submit");
+    var plan=document.querySelector(".plan");
+    var done=document.querySelector(".done");
+    function getData() {   //获取数据   原理：操作数据不是操作页面
+        return localStorage.todo?JSON.parse(localStorage.todo):[];
+    }
+    function saveData(data) {  //保存数据到LocaStorage(Application中查看)
+        localStorage.todo=JSON.stringify(data);
+    }
+    function reWrite() { //根据LocaStorage中的信息重绘页面
+        var data=getData();
+        var str1="",str2="";
+        data.forEach(function (v,i) {
+            if(!v.done){
+                str1+=`<li id=${i}><input type="checkbox" onfocus="changestate(this)"><span contenteditable="true" onblur="changecontent(this)">${v.content}</span><time>${time(v.time)}</time></li>`
+            }else{
+                str2+=`<li id=${i}><input type="submit" value="X" onfocus="del(this)"><span>${v.content}</span><time>${time(v.time)}</time></li>`
+            }
+        })
+            plan.innerHTML=str1;
+            done.innerHTML=str2;
+    }
+    reWrite();
+    submit.onclick=function () { //把数据存储到localStorage中
+        if(text.value==""){
+            return;
+        }
+        var val=text.value;
+        text.value="";
+        var data=getData();
+        var date=new Date();
+        var time=date.getTime();
+        data.push({content:val,time,done:false})
+        saveData(data);
+        reWrite();
+    }
+    function time(t) {
+        var date=new Date();
+        date.setTime(t);
+        var year=date.getFullYear();
+        var month=setZero(date.getMonth()+1);
+        var day=setZero(date.getDate());
+        var hour=setZero(date.getHours());
+        var minutes=setZero(date.getMinutes());
+        var seconds=setZero(date.getSeconds());
+        return year+"/"+month+"/"+day+" "+hour+":"+minutes+":"+seconds;
+    }
+    function setZero(num) { //加0函数
+        if(num<10){
+            return "0"+num;
+        }else{
+            return num;
+        }
+    }
+    function changestate(ele) {  //点击plan中每一条对应内容去done
+        var id=ele.parentNode.id;  //上述给reWrite函数中li设置了id={i}  所以每一个li都会有一个id 0 1 2 3
+        var data=getData();  //获取数据
+        data[id].done=true; //true执行reWrite函数中else{}步骤
+        saveData(data); //保存数据
+        reWrite();   //重绘页面
+    }
+    function del(ele) {  //点击done每一条对应内容删除
+        var id=ele.parentNode.id; //同上
+        var data=getData();
+        data.splice(id,1);
+        saveData(data);
+        reWrite();
+    }
+    function changecontent(ele) { //点击修改plan中内容 刷新后为改变后的内容
+        var id=ele.parentNode.id; //同上
+        var val=ele.innerHTML;
+        var data=getData();
+        data[id].content=val;
+        saveData(data);
+        reWrite();
+    }
+</script>
+</html>
