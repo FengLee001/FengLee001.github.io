@@ -204,12 +204,12 @@ header{
 .ziji{
 	position: absolute;
 	top:165px;
-	left:544px;
+	left:-1000px;
 }
 .about_icon2{
 	position: absolute;
 	top:120px;
-	right:0;
+	right:-1000px;
 
 }
 .icon_title{
