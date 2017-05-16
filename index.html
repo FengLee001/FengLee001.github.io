@@ -63,8 +63,12 @@
 	.section5 { 
 		background: url(img/99.jpg) 50%;
 	}
+	.music{
+		position: fixed;
+		left: 0;
+		top:0;
+	}
 </style>
-	
 	<script src="js/jquery-1.8.3.min.js"></script>
 	<script src="js/jquery.fullPage.min.js"></script>
 
@@ -75,22 +79,29 @@
 			menu: '#menu',
 			navigation:true,
 			navigationTooltips:['My Homepage','关于我','专业技能','作品展示','联系我'],
-			// afterload:function (an,index) {
-			// 	// if(index=2){
-			// 	// 	$("canvas").load();
-			// 	// }
-   //          if(index==1){ //第二屏
-   //              $(".about_icon1").animate({left:500}); 
-   //              $(".about_icon2").animate({right:500});
-   //          }
-   //      }
+			afterLoad:function (an,index) {
+            	if(index==2){ 
+                	$(".ziji").animate({left:544}); 
+                	$(".about_icon2").animate({right:0});
+            	}
+            	// if(index==3){
+            	// 	$("canvas").;
+            	// }
+        	},
+        	onLeave:function (index) {
+                if(index==2){ //第二屏
+                    $(".ziji").animate({left:-1000}); //-1000是定位值
+                    $(".about_icon2").animate({right:-1000});
+
+                }
+            }
 		});
 	});
 	</script>
 
 </head>
 <body>
-
+	<embed src="css/1.mp3" width=0 height=0 autostart=true hidden=ture loop=true  class="music">
 	<div class="box">
 	<ul id="menu">
 		<li data-menuanchor="page1" class="active"><a href="#page1">My Homepage</a></li>
