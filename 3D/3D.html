@@ -82,9 +82,14 @@
         .container{
             width: 600px;
             height: 400px;
-            margin: 0 auto;
+            /*margin: 0 auto;*/
             border:1px solid#a93931;
             /*overflow: hidden;*/
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin: auto;
+            z-index: 10;
         }
         .container video{
             width: 100%;
@@ -423,7 +428,7 @@
     //1.创建表盘
     var div = document.createElement("div"); //创建div
     var biao=document.querySelector(".scene ul li:nth-child(6)")
-    div.style.cssText = "width:200px;height:200px;border:5px solid rgb(255, 204, 0);background-image:url(11.gif); background-size:60% 60%;background-repeat:no-repeat;background-position: center;margin:0 auto;border-radius:50%;position:absolute;bottom:80px;left:0;right:0;margin:auto;"
+    div.style.cssText = "width:200px;height:200px;border:5px solid rgb(255, 204, 0);background-image:url(11.gif); background-size:60% 60%;background-repeat:no-repeat;background-position: center;margin:0 auto;border-radius:50%;position:absolute;bottom:300px;left:500px;"
     biao.appendChild(div); //表盘放入body中
 
     //2.创建一圈时刻

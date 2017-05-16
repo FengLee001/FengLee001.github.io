@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8">
-<title>个人主页</title>
+<title>李峰个人主页</title>
 <link rel="stylesheet" href="http://at.alicdn.com/t/font_gwxhox7wow53ik9.css">
 <link rel="stylesheet" href="css/jquery.fullPage.css">
 <link rel="stylesheet" href="css/base.css">
@@ -81,19 +81,293 @@
 			navigationTooltips:['My Homepage','关于我','专业技能','作品展示','联系我'],
 			afterLoad:function (an,index) {
             	if(index==2){ 
-                	$(".ziji").animate({left:544}); 
-                	$(".about_icon2").animate({right:0});
+                	$(".ziji").animate({left:544},500); 
+                	$(".about_icon2").animate({right:0},500);
             	}
-            	// if(index==3){
-            	// 	$("canvas").;
-            	// }
-        	},
-        	onLeave:function (index) {
+            	if(index==5){
+            		$(".mingyan p").fadeIn(2000);
+            	}
+            	if(index==3){
+            		{
+    					let canvas=$(".hua1")[0];
+    					let cobj=canvas.getContext("2d");
+    					cobj.clearRect(0,0,120,120);
+    					cobj.beginPath();
+    					cobj.lineWidth=8;
+    					cobj.strokeStyle="#fff";
+    					cobj.arc(60,60,56,-Math.PI/2,2*Math.PI);
+    					cobj.stroke();
+    					cobj.strokeStyle="#ed6811";
+    					cobj.beginPath();
+    					cobj.font="bold 28px 华文彩云";
+    					cobj.textAlign="center";
+    					cobj.textBaseline="middle";
+    					cobj.fillStyle="#fff";
+    					cobj.fillText("88%",60,60);
+					
+    					 function atr(deg){
+    					    return Math.PI*deg/180;
+    					}
+    					let angle=0;
+    					let maxangle=88*0.01*360;
+    					let f;
+    					function progress(){
+    					    angle+=3;
+    					    cobj.clearRect(30,30,60,60);
+    					    cobj.beginPath();
+    					    cobj.arc(60,60,56,-atr(90),atr(angle-90));
+    					    cobj.stroke();
+    					    cobj.fillText(Math.floor(angle/360*100)+"%",60,60);
+    					    if(angle>maxangle){
+    					        cancelAnimationFrame(f);
+    					    }else{
+    					        f=requestAnimationFrame(progress);
+    					    }
+    					}
+    					progress();
+					}
+
+					{
+    					let canvas=$(".hua2")[0];
+    					let cobj=canvas.getContext("2d");
+    					cobj.clearRect(0,0,120,120);
+    					cobj.beginPath();
+    					cobj.lineWidth=8;
+    					cobj.strokeStyle="#fff";
+    					cobj.arc(60,60,56,-Math.PI/2,2*Math.PI);
+    					cobj.stroke();
+    					cobj.strokeStyle="#ed6811";
+    					cobj.beginPath();
+    					cobj.font="bold 28px 华文彩云";
+    					cobj.textAlign="center";
+    					cobj.textBaseline="middle";
+    					cobj.fillStyle="#fff";
+    					cobj.fillText("85%",60,60);
+					
+    					 function atr(deg){
+    					    return Math.PI*deg/180;
+    					}
+    					let angle=0;
+    					let maxangle=85*0.01*360;
+    					let f;
+    					function progress(){
+    					    angle+=3;
+    					    cobj.clearRect(30,30,60,60);
+    					    cobj.beginPath();
+    					    cobj.arc(60,60,56,-atr(90),atr(angle-90));
+    					    cobj.stroke();
+    					    cobj.fillText(Math.floor(angle/360*100)+"%",60,60);
+    					    if(angle>maxangle){
+    					        cancelAnimationFrame(f);
+    					    }else{
+    					        f=requestAnimationFrame(progress);
+    					    }
+    					}
+    					progress();
+					}
+
+					{
+    					let canvas=$(".hua3")[0];
+    					let cobj=canvas.getContext("2d");
+    					cobj.clearRect(0,0,120,120);
+    					cobj.beginPath();
+    					cobj.lineWidth=8;
+    					cobj.strokeStyle="#fff";
+    					cobj.arc(60,60,56,-Math.PI/2,2*Math.PI);
+    					cobj.stroke();
+    					cobj.strokeStyle="#ed6811";
+    					cobj.beginPath();
+    					cobj.font="bold 28px 华文彩云";
+    					cobj.textAlign="center";
+    					cobj.textBaseline="middle";
+    					cobj.fillStyle="#fff";
+    					cobj.fillText("92%",60,60);
+					
+    					 function atr(deg){
+    					    return Math.PI*deg/180;
+    					}
+    					let angle=0;
+    					let maxangle=92*0.01*360;
+    					let f;
+    					function progress(){
+    					    angle+=3;
+    					    cobj.clearRect(30,30,60,60);
+    					    cobj.beginPath();
+    					    cobj.arc(60,60,56,-atr(90),atr(angle-90));
+    					    cobj.stroke();
+    					    cobj.fillText(Math.floor(angle/360*100)+"%",60,60);
+    					    if(angle>maxangle){
+    					        cancelAnimationFrame(f);
+    					    }else{
+    					        f=requestAnimationFrame(progress);
+    					    }
+    					}
+    					progress();
+					}
+
+					{
+    					let canvas=$(".hua4")[0];
+    					let cobj=canvas.getContext("2d");
+    					cobj.clearRect(0,0,120,120);
+    					cobj.beginPath();
+    					cobj.lineWidth=8;
+    					cobj.strokeStyle="#fff";
+    					cobj.arc(60,60,56,-Math.PI/2,2*Math.PI);
+    					cobj.stroke();
+    					cobj.strokeStyle="#ed6811";
+    					cobj.beginPath();
+    					cobj.font="bold 28px 华文彩云";
+    					cobj.textAlign="center";
+    					cobj.textBaseline="middle";
+    					cobj.fillStyle="#fff";
+    					cobj.fillText("86%",60,60);
+					
+    					 function atr(deg){
+    					    return Math.PI*deg/180;
+    					}
+    					let angle=0;
+    					let maxangle=86*0.01*360;
+    					let f;
+    					function progress(){
+    					    angle+=3;
+    					    cobj.clearRect(30,30,60,60);
+    					    cobj.beginPath();
+    					    cobj.arc(60,60,56,-atr(90),atr(angle-90));
+    					    cobj.stroke();
+    					    cobj.fillText(Math.floor(angle/360*100)+"%",60,60);
+    					    if(angle>maxangle){
+    					        cancelAnimationFrame(f);
+    					    }else{
+    					        f=requestAnimationFrame(progress);
+    					    }
+    					}
+    					progress();
+					}
+
+					{
+    					let canvas=$(".hua5")[0];
+    					let cobj=canvas.getContext("2d");
+    					cobj.clearRect(0,0,120,120);
+    					cobj.beginPath();
+    					cobj.lineWidth=8;
+    					cobj.strokeStyle="#fff";
+    					cobj.arc(60,60,56,-Math.PI/2,2*Math.PI);
+    					cobj.stroke();
+    					cobj.strokeStyle="#ed6811";
+    					cobj.beginPath();
+    					cobj.font="bold 28px 华文彩云";
+    					cobj.textAlign="center";
+    					cobj.textBaseline="middle";
+    					cobj.fillStyle="#fff";
+    					cobj.fillText("80%",60,60);
+					
+    					 function atr(deg){
+    					    return Math.PI*deg/180;
+    					}
+    					let angle=0;
+    					let maxangle=80*0.01*360;
+    					let f;
+    					function progress(){
+    					    angle+=3;
+    					    cobj.clearRect(30,30,60,60);
+    					    cobj.beginPath();
+    					    cobj.arc(60,60,56,-atr(90),atr(angle-90));
+    					    cobj.stroke();
+    					    cobj.fillText(Math.floor(angle/360*100)+"%",60,60);
+    					    if(angle>maxangle){
+    					        cancelAnimationFrame(f);
+    					    }else{
+    					        f=requestAnimationFrame(progress);
+    					    }
+    					}
+    					progress();
+					}
+
+					{
+    					let canvas=$(".hua6")[0];
+    					let cobj=canvas.getContext("2d");
+    					cobj.clearRect(0,0,120,120);
+    					cobj.beginPath();
+    					cobj.lineWidth=8;
+    					cobj.strokeStyle="#fff";
+    					cobj.arc(60,60,56,-Math.PI/2,2*Math.PI);
+    					cobj.stroke();
+    					cobj.strokeStyle="#ed6811";
+    					cobj.beginPath();
+    					cobj.font="bold 28px 华文彩云";
+    					cobj.textAlign="center";
+    					cobj.textBaseline="middle";
+    					cobj.fillStyle="#fff";
+    					cobj.fillText("70",60,60);
+					
+    					 function atr(deg){
+    					    return Math.PI*deg/180;
+    					}
+    					let angle=0;
+    					let maxangle=70*0.01*360;
+    					let f;
+    					function progress(){
+    					    angle+=3;
+    					    cobj.clearRect(30,30,60,60);
+    					    cobj.beginPath();
+    					    cobj.arc(60,60,56,-atr(90),atr(angle-90));
+    					    cobj.stroke();
+    					    cobj.fillText(Math.floor(angle/360*100)+"%",60,60);
+    					    if(angle>maxangle){
+    					        cancelAnimationFrame(f);
+    					    }else{
+    					        f=requestAnimationFrame(progress);
+    					    }
+    					}
+    					progress();
+					}
+				}
+   			},
+   			onLeave:function (index) {
                 if(index==2){ //第二屏
                     $(".ziji").animate({left:-1000}); //-1000是定位值
                     $(".about_icon2").animate({right:-1000});
-
                 }
+                if(index==5){
+            		$(".mingyan p").fadeOut(500);
+            	}
+            	if(index==3){
+            		{
+                    	let canvas=$(".hua1")[0];
+                    	let cobj=canvas.getContext("2d");
+                    	cobj.clearRect(0,0,120,120)
+                	}
+
+                	{
+                    	let canvas=$(".hua2")[0];
+                    	let cobj=canvas.getContext("2d");
+                    	cobj.clearRect(0,0,120,120)
+                	}
+
+                	{
+                    	let canvas=$(".hua3")[0];
+                    	let cobj=canvas.getContext("2d");
+                    	cobj.clearRect(0,0,120,120)
+                	}
+
+                	{
+                    	let canvas=$(".hua4")[0];
+                    	let cobj=canvas.getContext("2d");
+                    	cobj.clearRect(0,0,120,120)
+                	}
+
+                	{
+                    	let canvas=$(".hua5")[0];
+                    	let cobj=canvas.getContext("2d");
+                    	cobj.clearRect(0,0,120,120)
+                	}
+
+                	{
+                    	let canvas=$(".hua6")[0];
+                    	let cobj=canvas.getContext("2d");
+                    	cobj.clearRect(0,0,120,120)
+                	}
+            	}
             }
 		});
 	});
@@ -131,7 +405,7 @@
 		<div class="some-notes">
 		<div class="neikuan">
 			<div class="title col-lg-12 col-md-12 col-sm-12">
-                <h2> ❤ ----- Motto ----- ❤ </h2>
+                <h2> ❤ ----- <span>Motto</span> ----- ❤ </h2>
             </div>
             <div class="desc col-lg-12 col-md-12 col-sm-12">
                 <p class="td">God help those who help themselves,Genius is an infinite diligent ability</p>
@@ -146,7 +420,7 @@
 		<!-- 关于我开始 -->
 		<div class="about_me neikuan1">
 		<div class="neikuan">
-			<div class="about_title col-lg-12 col-md-12 col-sm-12">关 于 我</div>
+			<div class="about_title about_title_a col-lg-12 col-md-12 col-sm-12">关 于 我</div>
 			<div class="about_title about_title1 col-lg-12 col-md-12 col-sm-12">About Me</div>
 			<div class="about_icon about_icon1 col-lg-6 col-md-6 col-sm-12 row">
 				<img src="img/000.jpeg" alt="" class="ziji">	
@@ -171,7 +445,7 @@
 		<div class="about_me">
 		<div class="neikuan ">
 			<div class="about_content col-lg-12 col-md-12 col-sm-12">
-				<div class="about_title col-lg-12 col-md-12 col-sm-12">专 业 技 能</div>
+				<div class="about_title about_title_a col-lg-12 col-md-12 col-sm-12">专 业 技 能</div>
 				<div class="about_title about_title1 col-lg-12 col-md-12 col-sm-12">Professional Skills</div>
 				<div class="about_icon col-lg-6 col-md-6 col-sm-12 row">
 					<div class="icon_pic col-lg-2 col-md-2 col-sm-2 ">
@@ -257,123 +531,123 @@
 		<div class="works_show">
 			<div class="neikuan ">
 			<div class="col-lg-12 col-md-12 col-sm-12">
-				<div class="works_title">作 品 展 示</div>
+				<div class="works_title works_title_a">作 品 展 示</div>
 				<div class="works_title works_title1">Our Works</div>
 			</div>
 			<div class="works_pic col-lg-4 col-md-6 col-sm-12">
-					<a href="###">
-						<h3>网 站 类</h3>
-						<div class="picture">
-							<div class="mask mask1">
-								<a href="net/jd/index.html"><p>1 . 京东官网</p></a>
-								<a href="net/tm/index.html"><p>2 . 天猫官网</p></a>
-								<a href="net/xm/index.html"><p>3 . 小米官网</p></a>
-								<a href="net/zy/index.html"><p>4 . 中国移动</p></a>
-								<a href="net/yt/index.html"><p>5 . 银泰官网</p></a>
-								<a href="net/sf/index.html"><p>6 . 沙发网</p></a>
-								<a href=""><p>7 . 苹果网</p></a>
-								<a href="net/fk/index.html"><p>8 . 凡客网</p></a>
-								<a href="net/wj/首页/index.html"><p>9 . 红酒网(完整版)</p></a>
-							</div>
-							<div class="border_animation">
-                                <div class="border border_top"></div>
-                                <div class="border border_right"></div>
-                                <div class="border border_bottom"></div>
-                                <div class="border border_left"></div>
-                                <img src="img/01.jpg" alt="" class="tu1">
-                            </div>
-						</div>	
-					</a>
-			</div>
-			<div class="works_pic col-lg-4 col-md-6 col-sm-12">
-					<a href="###">
-						<h3>游 戏 类</h3>
-						<div class="picture">
-							<div class="mask mask2">
-								<a href="game/dazi/index.html"><p>1 . 打字游戏</p></a>
-								<a href="game/saolei/saolei.html"><p>2 . 扫雷</p></a>
-								<a href="game/snake/index.html"><p>3 . 贪吃蛇</p></a>
-								<a href="game/chidoudou/chidoudou.html"><p>4 . 吃豆豆</p></a>
-							</div>
-							<div class="border_animation">
-                                <div class="border border_top"></div>
-                                <div class="border border_right"></div>
-                                <div class="border border_bottom"></div>
-                                <div class="border border_left"></div>
-                               <img src="img/03.jpg" alt="" class="tu2">
-                            </div>
-						</div>	
-					</a>
-			</div>
-			<div class="works_pic col-lg-4 col-md-6 col-sm-12">
-					<a href="###">
-						<h3>特 效 类</h3>
-						<div class="picture">
-							<div class="mask mask3">
-								<a href="texiao/huaban.html"><p>1 . 绘图板</p></a>
-								<a href="texiao/todoList.html"><p>2 . todoList</p></a>
-								<a href="texiao/lz.html"><p>3 . 粒子动画</p></a>
-								<a href="texiao/14.biao.html"><p>4 . 时钟</p></a>
-								<a href="texiao/daojishi/djs.html"><p>5 . 倒计时</p></a>
-							</div>
-							<div class="border_animation">
-                                <div class="border border_top"></div>
-                                <div class="border border_right"></div>
-                                <div class="border border_bottom"></div>
-                                <div class="border border_left"></div>
-                                <img src="img/02.jpg" alt="" class="tu3">
-                            </div>
-						</div>	
-					</a>
-			</div>
-			<div class="works_pic col-lg-4 col-md-6 col-sm-12">
-					<a href="###">
-						<h3>视 频 类</h3>
-						<div class="picture">
-							<div class="mask mask4">
-								<a href="video/shipin.html"><p>1 . 视频播放</p></a>
-							</div>
-							<div class="border_animation">
-                                <div class="border border_top"></div>
-                                <div class="border border_right"></div>
-                                <div class="border border_bottom"></div>
-                                <div class="border border_left"></div>
-                                <img src="img/04.jpg" alt="" class="tu4">
-                            </div>
-						</div>	
-					</a>
-			</div>
-			<div class="works_pic col-lg-4 col-md-6 col-sm-12">
-					<a href="###">
-						<h3>阿 贾 克 斯</h3>
-						<div class="picture">
-							<div class="mask mask5">
-								<a href="ajax/tianqi/ajax.html"><p>1 . 天气预报</p></a>
-							</div>
-							<div class="border_animation">
-                                <div class="border border_top"></div>
-                                <div class="border border_right"></div>
-                                <div class="border border_bottom"></div>
-                                <div class="border border_left"></div>
-                                <img src="img/05.jpg" alt="" class="tu5">
-                            </div>
-						</div>
-					</a>
-			</div>
-			<div class="works_pic col-lg-4 col-md-6 col-sm-12">
 				<a href="###">
-					<h3>3D 类</h3>
-					<div class="picture">
-						<div class="mask mask6">
-							<a href="3D/3D.html"><p>1 . 3D空间</p></a>
-						</div>
-						<div class="border_animation">
+					<div class="border_animation">
                                <div class="border border_top"></div>
                                <div class="border border_right"></div>
                                <div class="border border_bottom"></div>
                                <div class="border border_left"></div>
-                               <img src="img/06.jpg" alt="" class="tu6">
+						<h3>网 站 类</h3>
+						<div class="picture">
+							<div class="mask mask1">
+								<a href="net/jd/index.html"><p> 1 . 京 东 官 网</p></a>
+								<a href="net/tm/index.html"><p> 2 . 天 猫 官 网</p></a>
+								<a href="net/xm/index.html"><p> 3 . 小 米 官 网</p></a>
+								<a href="net/zy/index.html"><p> 4 . 中 国 移 动</p></a>
+								<a href="net/yt/index.html"><p> 5 . 银 泰 官 网</p></a>
+								<a href="net/sf/index.html"><p> 6 . 沙 发 网</p></a>
+								<a href=""><p>7 . 苹果网</p></a>
+								<a href="net/fk/index.html"><p> 8 . 凡 客 网</p></a>
+								<a href="net/wj/首页/index.html"><p> 9 . 红 酒 网 (完整版)</p></a>
+							</div>
+						 	<img src="img/01.jpg" alt="" class="tu1">
+                       	</div>
+					</div>	
+				</a>
+			</div>
+			<div class="works_pic col-lg-4 col-md-6 col-sm-12">
+				<a href="###">
+					<div class="border_animation">
+                           <div class="border border_top"></div>
+                           <div class="border border_right"></div>
+                           <div class="border border_bottom"></div>
+                           <div class="border border_left"></div>
+						<h3>游 戏 类</h3>
+						<div class="picture">
+							<div class="mask mask2">
+								<a href="game/dazi/index.html"><p> 1 . 打 字 游 戏</p></a>
+								<a href="game/saolei/saolei.html"><p> 2 . 扫 雷</p></a>
+								<a href="game/snake/index.html"><p> 3 . 贪 吃 蛇</p></a>
+								<a href="game/chidoudou/chidoudou.html"><p> 4 . 吃 豆 豆</p></a>
+							</div>
+							<img src="img/03.jpg" alt="" class="tu2">
                            </div>
+					</div>	
+				</a>
+			</div>
+			<div class="works_pic col-lg-4 col-md-6 col-sm-12">
+				<a href="###">
+					<div class="border_animation">
+                       	    <div class="border border_top"></div>
+                       	    <div class="border border_right"></div>
+                       	    <div class="border border_bottom"></div>
+                       	    <div class="border border_left"></div>
+						<h3>特 效 类</h3>
+						<div class="picture">
+							<div class="mask mask3">
+								<a href="texiao/huaban.html"><p> 1 . 绘 图 板</p></a>
+								<a href="texiao/todoList.html"><p> 2 . todoList</p></a>
+								<a href="texiao/lz.html"><p> 3 . 粒 子 动 画</p></a>
+								<a href="texiao/14.biao.html"><p> 4 . 时 钟</p></a>
+								<a href="texiao/daojishi/djs.html"><p> 5 . 倒 计 时</p></a>
+							</div>
+							<img src="img/02.jpg" alt="" class="tu3">
+                       	</div>
+					</div>	
+				</a>
+			</div>
+			<div class="works_pic col-lg-4 col-md-6 col-sm-12">
+				<a href="###">
+					<div class="border_animation">
+                        <div class="border border_top"></div>
+                        <div class="border border_right"></div>
+                        <div class="border border_bottom"></div>
+                        <div class="border border_left"></div>
+						<h3>视 频 类</h3>
+						<div class="picture">
+							<div class="mask mask4 mask_a">
+								<a href="video/shipin.html"><p> 1 . 视 频 播 放</p></a>
+							</div>
+							<img src="img/04.jpg" alt="" class="tu4">
+                        </div>
+					</div>	
+				</a>
+			</div>
+			<div class="works_pic col-lg-4 col-md-6 col-sm-12">
+				<a href="###">
+					<div class="border_animation">
+                        <div class="border border_top"></div>
+                        <div class="border border_right"></div>
+                        <div class="border border_bottom"></div>
+                        <div class="border border_left"></div>
+						<h3>阿 贾 克 斯</h3>
+						<div class="picture">
+							<div class="mask mask5 mask_a">
+								<a href="ajax/tianqi/ajax.html"><p> 1 . 天 气 预 报</p></a>
+							</div>
+							<img src="img/05.jpg" alt="" class="tu5">
+                    	</div>
+					</div>
+				</a>
+			</div>
+			<div class="works_pic col-lg-4 col-md-6 col-sm-12">
+				<a href="###">
+					<div class="border_animation">
+                        <div class="border border_top"></div>
+                        <div class="border border_right"></div>
+                        <div class="border border_bottom"></div>
+                        <div class="border border_left"></div>
+						<h3>3D 类</h3>
+						<div class="picture">
+							<div class="mask mask6 mask_a">
+								<a href="3D/3D.html"><p> 1 . 3D 空 间</p></a>
+							</div>
+							 <img src="img/06.jpg" alt="" class="tu6">
+                        </div>
 					</div>		
 				</a>
 			</div>
@@ -386,7 +660,7 @@
 		<div class="contact">
 		<div class="neikuan">
 			<div class="col-lg-12 col-md-12 col-sm-12">
-				<div class="contact_title">联 系 我</div>
+				<div class="contact_title contact_title_a">联 系 我</div>
 				<div class="contact_title contact_title1">Cantact Me</div>
 				<div class="col-xs-12 col-sm-6 col-md-3">
 	                <div class="counter-item">
