@@ -465,7 +465,7 @@
         // 面向对象
         var main=document.querySelector(".main");
         class Game {
-            constructor(main,scor,state,life,control,mask,score) {
+            constructor(main,scor,state,life,control,mask,score,maxscore) {
                 this.main = main;
                 this.num = 3;
                 this.obj = {};
@@ -597,6 +597,7 @@
                         this.bestscor.pop();
                     }
                     localStorage.bestscor=JSON.stringify(this.bestscor);
+                     alert(this.scor);
                     // this.maxscore.innerHTML=this.scor;
                     // this.bestscor.innerHTML=this.bestscor[0].scor;
                 }

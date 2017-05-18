@@ -11,9 +11,9 @@
             box-sizing: border-box;
         }
         canvas{
-            background: #ccc;
+            background: #e6bc4c;
             display: block;
-            margin: 0 auto;
+            margin-left: 450px;
         }
         #controls{
             width: 200px;
@@ -22,18 +22,29 @@
             position: absolute;
             left: 0;
             top: 0;
-            background: linear-gradient(60deg, #66d9ef 0, #5fcd8e 50%, #a1bc1f 0, #26a33d 100%);
+            background: linear-gradient(60deg, #c84a00 0, #dbb852 100%);
+            z-index: 2;
+        }
+        .mm{
+            width: 210px;
+            height: 100%;
+            /*background: url(1.ico);*/
+            /*background-repeat: no-repeat;*/
+            position: absolute;
+            top:0;
+            right: -215px;
+            z-index: 1;
         }
         #controls section{
             height:30px;
-            margin:20px 20px;
+            margin:40px 20px;
         }
         lable{
             width:50%;
             float: left;
             height:30px;
             color: #fff;
-            line-height:30px;
+            line-height:20px;
             text-align: center;
         }
         section lable,input:not[type=button]{
@@ -45,19 +56,42 @@
         input[type=button]{
             width: 150px;
             height: 30px;
-            background: #fd4889;
+            background:#aa370a;
             color: #fff;
             border: none;
             border-radius: 5px;
             display: block;
-            margin: 15px auto;
+            margin: 40px auto;
             /*float: none;*/
+        }
+        h1{
+            margin-left: 530px;
+            font-size: 80px;
+            font-family: 方正舒体;
+            line-height: 140px;
+            color: #aa370a;
+            font-weight: bold;
+        }
+        .mao{
+            width: 400px;
+            height: 600px;
+            position: fixed;
+            right: 100px;
+            bottom: 0;
+            top:0;
+            margin: auto;
         }
     </style>
 </head>
 <body>
-<canvas width="500px" height="500px"></canvas>
+    <img src="timg1.png" alt="" class="mao">
+    <h1>萌猫 \(^o^)/ 画画</h1>
+<canvas width="800px" height="800px"></canvas>
+
 <div id="controls">
+    <div class="mm">
+        <img src="1.ico" alt="">
+    </div>
     <section>
         <lable for="shape">选择形状</lable>
         <select id="shape">
@@ -142,7 +176,7 @@
             var mx=e.offsetX;
             var my=e.offsetY;
             if(s!=="eraser"){
-                cobj.clearRect(0,0,500,500); //画之前要清空
+                cobj.clearRect(0,0,800,800); //画之前要清空
                 if(data.length!=0){
                     cobj.putImageData(data[data.length-1],0,0)  //上次历史
                 }
@@ -150,7 +184,7 @@
             draw[s](ox,oy,mx,my,si);
         };
         document.onmouseup=function () {
-            data.push(cobj.getImageData(0,0,500,500));
+            data.push(cobj.getImageData(0,0,800,800));
             canvas.onmousemove=null;
             document.onmouseup=null;
         }
@@ -162,7 +196,7 @@
             alert("没了")
             return;
         }
-        cobj.clearRect(0,0,500,500);
+        cobj.clearRect(0,0,800,800);
         data.pop();
         if(data.length==0){
             return;
@@ -181,7 +215,7 @@
 
     //清空
     clear.onclick=function () {
-        cobj.clearRect(0,0,500,500);
+        cobj.clearRect(0,0,800,800);
         data=[];
     }
 

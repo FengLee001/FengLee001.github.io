@@ -16,12 +16,16 @@ $(function(){
 	const zuigaofen=$(".fenshuban .zuigaofen span")[0];
 	const defen=$(".fenshuban .defen span")[0];
 	const pauseobj=$(".fenshuban .pause")[0];
-	let tcs1=new tcs(sence,zuigaofen,defen,pauseobj);
+	const zhe=$(".zhe")[0];
+	const aniu=$(".aniu")[0];
+	const zi=$("p")[0];
+	let tcs1=new tcs(aniu,sence,zuigaofen,defen,pauseobj,zhe);
 
 })
 class tcs{
-	constructor(sence,zuigaofen,defen,pauseobj){
+	constructor(aniu,sence,zuigaofen,defen,pauseobj,zhe){
 		this.sence=sence;
+		this.aniu=aniu;
 		this.zuigaofen=zuigaofen;
 		this.defen=defen;
 		this.pauseobj=pauseobj;
@@ -30,9 +34,18 @@ class tcs{
 		this.shekeyflag=true;
 		this.fenshu=0;
 		this.statu=true;
+		this.zhe=zhe;
 		// this.startTime;
 		// this.dtime=0;
-		this.play();
+		this.kaishi();
+	}
+	kaishi(){
+		let that=this;
+		this.aniu.onclick=function(){
+			that.zhe.style.display="none";
+			that.play();
+		}
+
 	}
 	play(){
 		// let time=new Date();
@@ -202,43 +215,3 @@ class tcs{
 
 
 
-//练习
-// class tcs{
-// 	constructor(sence){
-// 		this.sence=sence;
-// 		this.she=[{x:0,y:0},{x:0,y:1},{x:0,y:2}];
-// 		this.play();
-// 	}
-
-
-// play(){
-// 	//场景
-// 	this.createSence();
-// 	//造蛇
-// 	this.createshe();
-// 	//蛇动
-// 	this.shemove();
-// }
-
-// createSence(){
-// 	for(let i=0;i<20;i++){
-// 		for(let j=0;j<20;j++){
-// 			let gezi=$("<div>");
-// 			gezi.id=`${i}-${j}`;
-// 			gezi.classList.add("gezi");
-// 			this.sence.appendChild(gezi);
-// 		}
-// 	}
-// }
-// createshe(){
-// 	for(let i=0;i<this.she.length;i++){
-// 		this.getElement(this.she[i]).classList.add("she");
-// 	}
-// }
-// shemove(){
-// 	let that=this;
-// 	this.t=setInterval(function(){
-// 		let newtou={x:that.she[that.she.length-1].x,y:that.she[that.she.length-1].y+1}
-// 	},300)
-// }
-// }

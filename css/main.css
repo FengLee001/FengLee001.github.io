@@ -166,19 +166,22 @@ header{
 	font-size: 30px;
 }
 .ziji{
-	width: 272px;
-	height: 300px;
+	width: 320px;
+	/*height: 300px;*/
 	display: block;
 	margin: 0 auto;
 }
 .js li{
 	font-size: 22px;
-	font-weight: bold;
+	/*font-weight: bold;*/
 	color: #fff;
 	width: 260px;
 	height: 30px;
 	margin-top: 35px;
 	/*float: left;*/
+}
+.icon_content{
+	display: none;
 }
 .about_me{
 	width: 100%;
@@ -198,6 +201,7 @@ header{
 }
 .about_title1{
 	font-size: 18px;
+	line-height: 50px;
 }
 .about_icon{
 	margin:45px 0px;
@@ -214,7 +218,7 @@ header{
 }
 .about_icon2{
 	position: absolute;
-	top:120px;
+	top:150px;
 	right:-1000px;
 
 }
@@ -249,6 +253,7 @@ h4{
 }
 .works_title1{
 	font-size: 18px;
+	line-height: 50px;
 }
 .works_pic{
 	padding: 20px 20px;
@@ -286,12 +291,57 @@ h4{
 	padding-left: 50px;
 	height: 35px;
 	font-size: 17px;
-	line-height: 35px;
+	line-height: 25px;
 	color: #fff;
 }
 .mask1 p{
 	height: 20px;
 	line-height: 25px;
+}
+.mask2 p{
+	margin-top: 10px;
+}
+.mask3 p{
+	margin-top: 5px;
+}
+.mask1 img{
+	width: 18px;
+	height: 16px;
+	float: left;
+	margin-right: 20px;
+}
+.mask2 img{
+	width: 25px;
+	height: 25px;
+	float: left;
+	margin-right: 20px;
+}
+.mask3 img{
+	width: 25px;
+	height: 25px;
+	float: left;
+	margin-right: 24px;
+}
+.mask4 img{
+	width: 25px;
+	height: 25px;
+	float: left;
+	margin-right: 24px;
+}
+.mask5 img{
+	width: 25px;
+	height: 25px;
+	float: left;
+	margin-right: 24px;
+}
+.mask6 img{
+	width: 25px;
+	height: 25px;
+	float: left;
+	margin-right: 24px;
+}
+.mask1 p span{
+	float: left;
 }
 .mask_a p{
 	margin-top: 10px;
@@ -382,6 +432,7 @@ h3{
 }
 .contact_title1{
 	font-size: 18px;
+	line-height: 80px;
 }
 .countspace{
 	text-align: center;
