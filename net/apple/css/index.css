@@ -246,6 +246,7 @@ nav>.neikuan>ul>.caidan{
 	width: 100%;
 	height: 440px;
 	background:#f2f2f2; 
+	overflow: hidden;
 }
 .dakuang ul{
 	width: auto;
