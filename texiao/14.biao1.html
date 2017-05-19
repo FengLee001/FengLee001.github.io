@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        window.onload=function () {
+
+            //1.创建表盘
+            var div = document.createElement("div"); //创建div
+            div.style.cssText = "width:200px;height:200px;border:5px solid rgb(255, 204, 0);background-image:url(11.gif); background-size:60% 60%;background-repeat:no-repeat;background-position: center;margin:0 auto;border-radius:50%;position:relative;"
+            document.body.appendChild(div); //表盘放入body中
+
+            //2.创建一圈时刻
+            for (let i = 0; i < 60; i++) {
+                let kd = document.createElement("div");
+                kd.style.cssText = "width:3px;height:5px;background:#ccc;position:absolute;left:98px;top:0;transform-origin:2px 100px;"
+                let angle = i * 6;
+                if (i % 5 == 0) {
+                    kd.style.height = "10px";
+                    kd.style.background = "#000";
+                }
+                kd.style.transform = `rotate(${angle}deg)`;
+                div.appendChild(kd);
+                }
+
+            //3.创建中心原点
+            var cricle = document.createElement("div");
+            cricle.style.cssText = "width:16px;height:16px;background:#ff6700;border-radius:50%;position:absolute;z-Index:5;left:92px;top:92px;"
+            div.appendChild(cricle);
+
+            //4.创建时针
+            var hour = document.createElement("div");
+            hour.style.cssText = "width:60px;height:5px;background:#000;position:absolute;left:100px;top:98px;z-Index:2;transform-origin:left center;"
+            div.appendChild(hour);
+
+            //5.创建分针
+            var minute = document.createElement("div");
+            minute.style.cssText = "width:80px;height:3px;background:#000;position:absolute;left:100px;top:99px;z-Index:2;transform-origin:left center;"
+            div.appendChild(minute);
+
+            //6.创建秒针
+            var second = document.createElement("div");
+            second.style.cssText = "width:90px;height:1px;background:#ff6700;position:absolute;left:100px;top:100px;z-Index:2;transform-origin:left center;"
+            div.appendChild(second);
+
+            //7.让针转动（需要刷新）
+            function setTime() {
+                var date = new Date();
+                var hours = date.getHours();
+                var minutes = date.getMinutes();
+                var seconds = date.getSeconds();
+                hour.style.transform = `rotate(${hours/12*360-90+minutes/60*30}deg)`//3点 hour=3 四分之一个一圈   减去所在位置90度
+                minute.style.transform = `rotate(${minutes/60*360-90}deg)`
+                second.style.transform = `rotate(${seconds/60*360-90}deg)`
+            }
+            setTime();
+
+            //8.让每隔1s针转动setInterval
+            setInterval(setTime,1000);
+        }
+    </script>
+</head>
+<body>
+</body>
+</html>
