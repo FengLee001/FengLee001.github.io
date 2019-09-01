@@ -1,0 +1,222 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    user-select: none;
+    text-decoration: none;
+}
+body,html {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: #b11d22 url("../images/bodyBg.png") no-repeat 0;
+    background-size: 100% 100%;
+}
+#box {
+    position: relative;
+    height: 5.5rem;
+    width: 5.5rem;
+    margin: 0 auto;
+    background: url("../images/ly-plate-c.gif") no-repeat 0;
+    background-size: contain;
+}
+.table {
+    width: 100%;
+    height: 100%;
+}
+.table img {
+    width: 80%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -40%;
+    margin-top: -40%;
+}
+.btn {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -0.8rem;
+    margin-top: -0.8rem;
+    width: 1.6rem;
+    height: 1.6rem;
+    background: url(../images/playbtn.png) no-repeat;
+    background-size: auto 1.6rem;
+}
+.mask{
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+    z-index: 8;
+}
+.maskPanel{
+    width: 60%;
+    border-radius: 5px;
+    text-align: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-left: -30%;
+    margin-top: -45%; 
+    padding: 36% 0;
+    display: none;
+    z-index: 10;
+}
+.maskPanelYes{
+    background: url(../images/awardYes.png) no-repeat;
+    background-size:contain;
+}
+.maskPanelNo{
+    background: url(../images/awardNo.png) no-repeat;
+    background-size:contain;
+}
+.maskPanel p{
+    margin: 0.12rem 0;
+    color: #fff;
+    font-weight: bold;
+}
+.maskPanel p#currTime{
+    font-size: 0.25rem; 
+}
+.maskPanel p#currText{
+    font-size: 0.35rem; 
+    margin-top: 0.35rem;
+}
+.header{
+    width: 100%;
+    height: 1rem;
+    text-align: center;
+    line-height: 1rem;
+    position: relative;
+    padding: 0.15rem 0 0.35rem;
+
+}
+.header img{
+   height: 0.8rem;
+   margin-left: 0.4rem;
+}
+.header img.logoTextImg{
+    height: 0.8rem;
+    position: absolute;
+    right: 47%;
+    top: 0.7rem;
+}
+.header span{
+    font-weight: bold;
+    color: #fff;
+    font-size: 0.35rem;
+}
+#audioImg{
+    width: 0.5rem;
+    height: 0.5rem;
+    position: absolute;
+    right: 0.15rem;
+    top: 0.15rem;
+
+}
+.transform{
+    -webkit-transition-property: -webkit-transform;
+    -webkit-transition-duration: 1s;
+    -moz-transition-property: -moz-transform;
+    -moz-transition-duration: 1s;
+    -webkit-animation: rotate 3s linear infinite;
+    -moz-animation: rotate 3s linear infinite;
+    -o-animation: rotate 3s linear infinite;
+    animation: rotate 3s linear infinite;
+}
+@-webkit-keyframes rotate{from{-webkit-transform: rotate(0deg)}
+    to{-webkit-transform: rotate(360deg)}
+}
+@-moz-keyframes rotate{from{-moz-transform: rotate(0deg)}
+    to{-moz-transform: rotate(359deg)}
+}
+@-o-keyframes rotate{from{-o-transform: rotate(0deg)}
+    to{-o-transform: rotate(359deg)}
+}
+@keyframes rotate{from{transform: rotate(0deg)}
+    to{transform: rotate(359deg)}
+}
+.ruleBox{
+    width: 6.5rem;
+    margin: 0.1rem auto;
+    /*background: rgba(219, 105, 75,0.6);*/  
+    color: #fff; 
+    padding: 0.1rem;
+    position: relative;
+}
+.ruleBoxBg{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: url(../images/bg2.png) no-repeat;
+    background-size:cover;
+    opacity: 0.5;
+    border-radius: 5px; 
+}
+p{
+    font-size: 0.25rem;
+    line-height: 0.45rem;
+    color: #fff;
+}
+.ruleBox p span{
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.ruleBox p{
+    padding-left: 0.35rem;
+    position: relative;
+    z-index: 5;
+} 
+.baseInfo p{
+    padding-left: 5%;
+    font-size: 12px;
+    text-shadow: 5px 5px 5px #f7912f;
+}
+h4{
+    color: #f7912f;
+    text-align: center;
+    font-size: 0.35rem;
+    margin-top: 0.3rem;
+}
+a{
+    color: #fff;
+} 
+#wechat{
+    color: #60fbf5;
+}
+#ewmBox{
+    width: 6rem;
+    height: 6rem;
+    background: #fff;
+    border-radius: 5px;
+    position: absolute;
+    left: 50%;
+    top:50%;
+    margin-top: -3rem;
+    margin-left:-3rem; 
+    display: none;
+    z-index: 10;
+}
+#ewmBox img{
+    width: 5.8rem;
+    height: 5.8rem;
+    display: block;
+    margin: 0.1rem auto;
+}
+#ewmBox p{
+    position: absolute;
+    text-align: center;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    color: #000;
+    font-size: 0.25rem;
+} 
