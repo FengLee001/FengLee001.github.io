@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>抽奖</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+
+<!-- logo -->
+<div class="header">
+    <img src="images/logo.png" alt="">
+    <img src="images/logoText.png" alt="" class="logoTextImg">
+    <span>欢迎您</span>
+</div>
+
+<!-- audio标示 -->
+<img src="images/music.png" alt="" id="audioImg" class="transform">
+<audio id="audio" loop="loop" autoplay="autoplay" src="images/shiji.mp3" style="display: none"></audio>
+
+<!-- 转盘容器 -->
+<div id="box">
+    <div class="table">
+        <img src="images/bg-lottery.png" alt="">
+    </div>
+    <div class="btn"></div>
+</div>
+
+<!-- 抽奖规则 -->
+<h4>抽奖规则</h4>
+<div class="ruleBox">
+    <p><span>1、</span>本次活动每天均可参与，仅限单人单次抽奖；</p>
+    <p><span>2、</span>点击抽奖，随机生成本次抽奖记录和当前抽奖时间；</p>
+    <p><span>3、</span>奖项每天限额免单两名，五折三名，八折四名，谢谢参与若干名；</p>
+    <p><span>4、</span>中奖者凭中奖页面在店内登记方可消费，若登记中奖名额达到上限，后续中奖无效；</p>
+    <p><span>5、</span>中奖者消费仅限当天单人单次；</p>
+    <p style="padding-left:0">备注：本次活动最终解释权归乔叔书麻辣烫店所有</p>
+    <div class="ruleBoxBg"></div>
+</div>
+
+<!-- 中奖提示 -->
+<div class="maskPanel">
+    <p id="currText"></p>
+    <p id="currTime"></p>
+</div> 
+
+<!-- 商家信息 -->
+<div class="baseInfo">
+    <p>订餐电话：<a href="tel:17635346457">17635346457</a><span id="wechat">（ 请戳我加微信 ）</span></p>
+    <p>商家地址：小店区康宁街竹犇火锅旁（原赵师傅菜馆）</p>
+</div>
+
+<!-- 微信二维码 -->
+<div id="ewmBox">
+    <img src="images/ewm.jpg" alt="">
+    <p>长按识别二维码</p>
+</div>
+ 
+ <!-- 遮罩层 -->
+ <div class="mask"></div>
+
+</body>
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/rem.js"></script>
+<script src="js/lotteryDraw.js"></script>
+<script>
+ 
+    $(function () {
+        //中奖提示取消
+        $(document).on("click",".mask",function () {
+            $(".mask,.maskPanel,#ewmBox").hide();
+        })
+        //背景音乐取消
+        $(document).on("click","#audioImg",function () {
+            $(this).toggleClass("transform"); 
+            if($(this).hasClass("transform")){ 
+                audio.play();
+            }else{
+                audio.pause();
+            }
+            
+        })
+        //戳我加微信
+        setInterval(function(){
+            $("#wechat").toggle();
+        },800) 
+
+        $(document).on("click","#wechat",function () {
+            $(".mask,#ewmBox").show();
+        })
+    })
+
+    var lottery = new Lottery({
+        rotateNum: 4,
+        dom: '#box',
+        startCbs: startFun,
+        disabledCbs: disabledFun,
+        endCbs: endFun
+    });
+    // 开始回调函数
+    function startFun() {
+        return randomDeg();
+    }
+    // 随机生成角度
+    function randomDeg() {
+        // 0-谢谢参与  1-五折（三人）  2-八折（四人）  3-免单（两人）
+        var arr=[0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,3,0,0,0,0,2,0,0,0,0,1,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,1,0,0,0,0,0,3,0,0,0,0,0];
+        var num = arr[Math.floor(Math.random() * arr.length)];
+        var deg;
+        if(num == 0) {
+            deg = 180;
+        }else if(num == 1) {
+            deg = 90;
+        }else if(num == 2) {
+            deg = 270;
+        }else if(num == 3) {
+            deg = 0;
+        }
+        // console.log(num,reg)
+        return deg;
+    }
+    // 结束回调函数
+    function endFun(deg) {
+        var date = new Date();
+        var currTime = date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate() + " " +date.getHours()+ ":" + date.getMinutes()+":"+date.getSeconds();
+        var currText = '';
+        // console.log(deg)
+        if (deg == 0) {
+            currText = "免单";
+            $(".maskPanel").addClass("maskPanelYes").removeClass("maskPanelNo");
+        } else if (deg == 90) {
+            currText = "五折";
+            $(".maskPanel").addClass("maskPanelYes").removeClass("maskPanelNo");
+        } else if (deg == 180) {
+            currText = "谢谢参与";
+            $(".maskPanel").addClass("maskPanelNo").removeClass("maskPanelYes");
+        } else if (deg == 270) {
+            currText = "八折";
+            $(".maskPanel").addClass("maskPanelYes").removeClass("maskPanelNo");
+        }
+        $(".mask,.maskPanel").show();
+        $("#currText").html(currText);
+        $("#currTime").html(currTime);
+    }
+    // 禁止回调函数
+    function disabledFun() {
+        console.log('抽奖中...');
+    }
+
+</script>
+</html>
